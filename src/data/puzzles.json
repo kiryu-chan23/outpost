@@ -1,0 +1,2288 @@
+[
+ {
+  "id": "p10f0jjs",
+  "fen": "2rb2k1/p4ppp/1p6/1P1b4/P7/2B2P1P/1KN3P1/4R3 w - - 1 33",
+  "lead": {
+   "fen": "2r3k1/p4ppp/1p6/1P1b2b1/P7/2B2P1P/1KN3P1/4R3 b - - 0 32",
+   "uci": "g5d8"
+  },
+  "solution": [
+   "e1e8"
+  ],
+  "themes": [
+   "mateIn1",
+   "backRank",
+   "mate"
+  ],
+  "primary": "backRank",
+  "level": 1,
+  "origin": "self-play"
+ },
+ {
+  "id": "p121kjk2",
+  "fen": "3r2k1/5p2/4p3/1q1P2p1/1p2Pn2/1N3P1P/RQ5P/3B3K b - - 6 39",
+  "lead": {
+   "fen": "3r2k1/5p2/4p3/1q1P2p1/Rp2Pn2/1N3P1P/1Q5P/3B3K w - - 5 39",
+   "uci": "a4a2"
+  },
+  "solution": [
+   "b5f1"
+  ],
+  "themes": [
+   "mateIn1",
+   "mate"
+  ],
+  "primary": "mateIn1",
+  "level": 1,
+  "origin": "self-play"
+ },
+ {
+  "id": "p15tq586",
+  "fen": "4r1k1/5rPp/7P/p7/1b6/8/1P3PPQ/6K1 b - - 2 39",
+  "lead": {
+   "fen": "4r1k1/5rPp/7P/p7/1b3Q2/8/1P3PP1/6K1 w - - 1 39",
+   "uci": "f4h2"
+  },
+  "solution": [
+   "e8e1"
+  ],
+  "themes": [
+   "mateIn1",
+   "backRank",
+   "mate"
+  ],
+  "primary": "backRank",
+  "level": 1,
+  "origin": "self-play"
+ },
+ {
+  "id": "p19md8vx",
+  "fen": "1rbqkb1r/pp1pnp2/2n4p/2pNp1p1/2B1P3/2P2N2/PP1P1PPP/R1BQK2R w KQk - 0 8",
+  "lead": {
+   "fen": "1rbqkb1r/pp1pnpp1/2n4p/2pNp3/2B1P3/2P2N2/PP1P1PPP/R1BQK2R b KQk - 0 7",
+   "uci": "g7g5"
+  },
+  "solution": [
+   "d5f6"
+  ],
+  "themes": [
+   "mateIn1",
+   "smothered",
+   "mate"
+  ],
+  "primary": "smothered",
+  "level": 1,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1ailrbj",
+  "fen": "1r4k1/5ppp/8/8/8/8/5PPP/RR4K1 w - - 0 1",
+  "solution": [
+   "b1b8"
+  ],
+  "themes": [
+   "mateIn1",
+   "backRank",
+   "mate"
+  ],
+  "primary": "backRank",
+  "level": 1,
+  "origin": "composed"
+ },
+ {
+  "id": "p1ako0lw",
+  "fen": "2r5/5k2/5pp1/7p/3pP3/5bP1/PR3P1P/2B3K1 b - - 5 39",
+  "lead": {
+   "fen": "2r5/5k2/5pp1/7p/3pP3/5bP1/PR1B1P1P/6K1 w - - 4 39",
+   "uci": "d2c1"
+  },
+  "solution": [
+   "c8c1"
+  ],
+  "themes": [
+   "mateIn1",
+   "mate"
+  ],
+  "primary": "mateIn1",
+  "level": 1,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1ednxph",
+  "fen": "2kr1b1r/pppb1ppp/7n/3P3q/1nQ5/2N2PB1/PPP1BP1P/R3K2R w KQ - 5 13",
+  "lead": {
+   "fen": "2kr1bnr/pppb1ppp/8/3P3q/1nQ5/2N2PB1/PPP1BP1P/R3K2R b KQ - 4 12",
+   "uci": "g8h6"
+  },
+  "solution": [
+   "c4c7"
+  ],
+  "themes": [
+   "mateIn1",
+   "mate"
+  ],
+  "primary": "mateIn1",
+  "level": 1,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1eu3nap",
+  "fen": "1n4k1/5pp1/3qpn2/Qb1p4/3P1NP1/3PPNKP/5P2/8 w - - 17 41",
+  "lead": {
+   "fen": "6k1/3n1pp1/3qpn2/Qb1p4/3P1NP1/3PPNKP/5P2/8 b - - 16 40",
+   "uci": "d7b8"
+  },
+  "solution": [
+   "a5b5"
+  ],
+  "themes": [
+   "hangingPiece"
+  ],
+  "primary": "hangingPiece",
+  "level": 1,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1ffcka5",
+  "fen": "3r2k1/5p2/4p3/3P2p1/1pN1P3/3q1P1n/1Q5P/R2B3K b - - 1 41",
+  "lead": {
+   "fen": "3r2k1/5p2/4p3/3P2p1/1p2P3/3q1P1n/1Q1N3P/R2B3K w - - 0 41",
+   "uci": "d2c4"
+  },
+  "solution": [
+   "d3f1"
+  ],
+  "themes": [
+   "mateIn1",
+   "mate"
+  ],
+  "primary": "mateIn1",
+  "level": 1,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1jhqwi",
+  "fen": "4rbk1/1p4pp/p1N2B2/2Pp2r1/P3q3/1Q5P/5PP1/1R1R2K1 b - - 0 29",
+  "lead": {
+   "fen": "4rbk1/1p4pp/p1N2p2/2Pp2r1/P2Bq3/1Q5P/5PP1/1R1R2K1 w - - 1 29",
+   "uci": "d4f6"
+  },
+  "solution": [
+   "e4g2"
+  ],
+  "themes": [
+   "mateIn1",
+   "mate"
+  ],
+  "primary": "mateIn1",
+  "level": 1,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1jqlm0v",
+  "fen": "1r1b4/1b3pk1/1pq1p1p1/p1p1P2p/P1P2P2/4P2P/1Q2B1P1/R3B1K1 b - - 2 32",
+  "lead": {
+   "fen": "1r1b4/1b3pk1/1pq1p1p1/p1p1P2p/P1P2P2/1Q2P2P/4B1P1/R3B1K1 w - - 1 32",
+   "uci": "b3b2"
+  },
+  "solution": [
+   "c6g2"
+  ],
+  "themes": [
+   "mateIn1",
+   "mate"
+  ],
+  "primary": "mateIn1",
+  "level": 1,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1k0a8kw",
+  "fen": "2Q5/pp3p1p/2b5/1P2k1p1/6n1/2p2PPq/P3P2P/5RK1 b - - 4 29",
+  "lead": {
+   "fen": "2Q5/pp3p1p/2b5/1P2k1p1/6n1/2p2PPq/P3P2P/R5K1 w - - 3 29",
+   "uci": "a1f1"
+  },
+  "solution": [
+   "h3h2"
+  ],
+  "themes": [
+   "mateIn1",
+   "mate"
+  ],
+  "primary": "mateIn1",
+  "level": 1,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1t52cq4",
+  "fen": "3r2k1/1p3ppp/n1p1b3/4P3/4N3/8/1B3PPP/3R2K1 b - - 5 22",
+  "lead": {
+   "fen": "3r2k1/1p3ppp/n1p1b3/4P3/4N3/8/1B3PPP/5RK1 w - - 4 22",
+   "uci": "f1d1"
+  },
+  "solution": [
+   "d8d1"
+  ],
+  "themes": [
+   "mateIn1",
+   "backRank",
+   "mate"
+  ],
+  "primary": "backRank",
+  "level": 1,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1wuk7lx",
+  "fen": "5k2/1p2rp1p/pR4p1/5b2/8/2Q2K2/q5PP/5R2 w - - 2 27",
+  "lead": {
+   "fen": "5k2/1p3p1p/pR4p1/5b2/8/2Q2K2/q3r1PP/5R2 b - - 1 26",
+   "uci": "e2e7"
+  },
+  "solution": [
+   "c3h8"
+  ],
+  "themes": [
+   "mateIn1",
+   "mate"
+  ],
+  "primary": "mateIn1",
+  "level": 1,
+  "origin": "self-play"
+ },
+ {
+  "id": "p81azax",
+  "fen": "5k1r/ppN1bp1p/2bB1n2/6p1/1P1Q4/2p3Pq/P3PP1P/R4RK1 b - - 3 20",
+  "lead": {
+   "fen": "5k1r/ppN1bp1p/2bB1n2/6p1/1P6/2p3Pq/P3PP1P/R2Q1RK1 w - - 2 20",
+   "uci": "d1d4"
+  },
+  "solution": [
+   "h3g2"
+  ],
+  "themes": [
+   "mateIn1",
+   "mate"
+  ],
+  "primary": "mateIn1",
+  "level": 1,
+  "origin": "self-play"
+ },
+ {
+  "id": "p9j0eyg",
+  "fen": "3r3k/R2R4/2nb1rp1/P3p3/1p5P/1B6/KPP5/8 w - - 0 49",
+  "lead": {
+   "fen": "3r3k/R2R4/2nbprp1/P7/1p5P/1B6/KPP5/8 b - - 4 48",
+   "uci": "e6e5"
+  },
+  "solution": [
+   "d7h7"
+  ],
+  "themes": [
+   "mateIn1",
+   "mate"
+  ],
+  "primary": "mateIn1",
+  "level": 1,
+  "origin": "self-play"
+ },
+ {
+  "id": "pci7aze",
+  "fen": "r1bqkb1r/pp1nnpp1/2p1p3/7p/3PN3/3B1N2/PPPB1PPP/R2QK2R w KQkq - 0 8",
+  "lead": {
+   "fen": "r1bqkb1r/pp1nnppp/2p1p3/8/3PN3/3B1N2/PPPB1PPP/R2QK2R b KQkq - 0 7",
+   "uci": "h7h5"
+  },
+  "solution": [
+   "e4d6"
+  ],
+  "themes": [
+   "mateIn1",
+   "smothered",
+   "mate"
+  ],
+  "primary": "smothered",
+  "level": 1,
+  "origin": "self-play"
+ },
+ {
+  "id": "pg0dg7w",
+  "fen": "1nbqk2r/r1p2ppp/p2bp3/3nN3/PppP4/4PQ2/1P2BPPP/RNB1K2R w KQk - 2 11",
+  "lead": {
+   "fen": "1nbqk2r/r1p2ppp/p2bpn2/4N3/PppP4/4PQ2/1P2BPPP/RNB1K2R b KQk - 1 10",
+   "uci": "f6d5"
+  },
+  "solution": [
+   "f3f7"
+  ],
+  "themes": [
+   "mateIn1",
+   "mate"
+  ],
+  "primary": "mateIn1",
+  "level": 1,
+  "origin": "self-play"
+ },
+ {
+  "id": "pgvpa2e",
+  "fen": "2rqkb1r/1p1nppp1/2p2n1p/p4b2/P1BP4/1QN1PN1P/1P3PP1/R1B1K2R w KQk - 2 10",
+  "lead": {
+   "fen": "r2qkb1r/1p1nppp1/2p2n1p/p4b2/P1BP4/1QN1PN1P/1P3PP1/R1B1K2R b KQkq - 1 9",
+   "uci": "a8c8"
+  },
+  "solution": [
+   "c4f7"
+  ],
+  "themes": [
+   "mateIn1",
+   "mate"
+  ],
+  "primary": "mateIn1",
+  "level": 1,
+  "origin": "self-play"
+ },
+ {
+  "id": "pjdfwf1",
+  "fen": "1r1q1rk1/2p1nppp/b2p1n2/3Pp3/4P3/P3BP2/1PQ4P/2R1KBNR w K - 2 17",
+  "lead": {
+   "fen": "r2q1rk1/2p1nppp/b2p1n2/3Pp3/4P3/P3BP2/1PQ4P/2R1KBNR b K - 1 16",
+   "uci": "a8b8"
+  },
+  "solution": [
+   "f1a6"
+  ],
+  "themes": [
+   "hangingPiece"
+  ],
+  "primary": "hangingPiece",
+  "level": 1,
+  "origin": "self-play"
+ },
+ {
+  "id": "prxhsz0",
+  "fen": "2Rb3k/8/2n1p1p1/4r3/1p5P/8/BPP5/1K6 b - - 3 53",
+  "lead": {
+   "fen": "2Rb3k/8/2n1p1p1/4r3/1p5P/1B6/1PP5/1K6 w - - 2 53",
+   "uci": "b3a2"
+  },
+  "solution": [
+   "e5e1"
+  ],
+  "themes": [
+   "mateIn1",
+   "backRank",
+   "mate"
+  ],
+  "primary": "backRank",
+  "level": 1,
+  "origin": "self-play"
+ },
+ {
+  "id": "pwcxxdi",
+  "fen": "2r3k1/5ppp/8/8/8/2Q5/5PPP/6K1 b - - 0 1",
+  "solution": [
+   "c8c3"
+  ],
+  "themes": [
+   "hangingPiece"
+  ],
+  "primary": "hangingPiece",
+  "level": 1,
+  "origin": "composed"
+ },
+ {
+  "id": "pxucajx",
+  "fen": "1bk5/8/6p1/5p2/2NN4/2P1PKP1/3r4/8 w - - 4 49",
+  "lead": {
+   "fen": "1bk5/8/6p1/5p2/2NN4/2P1PKP1/r7/8 b - - 3 48",
+   "uci": "a2d2"
+  },
+  "solution": [
+   "c4d2"
+  ],
+  "themes": [
+   "hangingPiece"
+  ],
+  "primary": "hangingPiece",
+  "level": 1,
+  "origin": "self-play"
+ },
+ {
+  "id": "pzd2tod",
+  "fen": "1rb2k1r/pp2npb1/4p1pp/8/2B1N2P/2P2N2/PP3PP1/3RK2R w K - 4 17",
+  "lead": {
+   "fen": "1rb2k1r/pp3pb1/4p1pp/3n4/2B1N2P/2P2N2/PP3PP1/3RK2R b K - 3 16",
+   "uci": "d5e7"
+  },
+  "solution": [
+   "d1d8"
+  ],
+  "themes": [
+   "mateIn1",
+   "backRank",
+   "mate"
+  ],
+  "primary": "backRank",
+  "level": 1,
+  "origin": "self-play"
+ },
+ {
+  "id": "p10b5dtw",
+  "fen": "R7/4pp1p/3qnkp1/5P2/4r3/3N2QP/1P4PK/8 w - - 1 44",
+  "lead": {
+   "fen": "R7/4ppkp/3qn1p1/5P2/4r3/3N2QP/1P4PK/8 b - - 0 43",
+   "uci": "g7f6"
+  },
+  "solution": [
+   "g3d6",
+   "e7d6",
+   "f5e6"
+  ],
+  "themes": [
+   "pin"
+  ],
+  "primary": "pin",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p10fb8f8",
+  "fen": "2rq3r/pp2kp2/3b1np1/1B1p1b1p/1B1PpN2/Q3P1PP/PP3P2/2R1K2R b K - 0 17",
+  "lead": {
+   "fen": "2rq3r/pp2kp2/3b1np1/1B1p1b1p/1B1PpN2/Q3P2P/PP3PP1/2R1K2R w K - 4 17",
+   "uci": "g2g3"
+  },
+  "solution": [
+   "c8c1",
+   "e1d2",
+   "c1h1"
+  ],
+  "themes": [
+   "hangingPiece",
+   "skewer"
+  ],
+  "primary": "skewer",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p121qjz1",
+  "fen": "1kr1r3/1p2b1p1/p1Pp4/P4p2/1P2p3/4KnPR/Q7/2R5 b - - 4 34",
+  "lead": {
+   "fen": "1kr1r3/1p2b1p1/p1Pp4/P4p2/1P2p3/4KnPR/Q7/7R w - - 3 34",
+   "uci": "h1c1"
+  },
+  "solution": [
+   "e7g5",
+   "e3f2",
+   "g5c1"
+  ],
+  "themes": [
+   "skewer"
+  ],
+  "primary": "skewer",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p13lpew4",
+  "fen": "3r4/2q2p2/1p2bpkp/p4N2/P2pP3/1P3QP1/5PPK/4R3 w - - 2 36",
+  "lead": {
+   "fen": "3r4/2q2pk1/1p2bp1p/p4N2/P2pP3/1P3QP1/5PPK/4R3 b - - 1 35",
+   "uci": "g7g6"
+  },
+  "solution": [
+   "f3g4",
+   "g6h7",
+   "g4g7"
+  ],
+  "themes": [
+   "mateIn2",
+   "mate"
+  ],
+  "primary": "mateIn2",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p16zw6ma",
+  "fen": "6r1/2p2kpp/5p2/3P4/4R3/b4P2/Pr1B1P1P/2R3K1 b - - 3 26",
+  "lead": {
+   "fen": "6r1/2p2kpp/5p2/3P4/4R3/b4P2/Pr1B1P1P/3R2K1 w - - 2 26",
+   "uci": "d1c1"
+  },
+  "solution": [
+   "b2d2",
+   "c1c7",
+   "f7g6"
+  ],
+  "themes": [
+   "discoveredAttack"
+  ],
+  "primary": "discoveredAttack",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p18xb894",
+  "fen": "8/3n2k1/7b/3P1p1P/8/6K1/R7/8 w - - 4 50",
+  "lead": {
+   "fen": "5n2/6k1/7b/3P1p1P/8/6K1/R7/8 b - - 3 49",
+   "uci": "f8d7"
+  },
+  "solution": [
+   "a2a7",
+   "g7f6",
+   "a7d7"
+  ],
+  "themes": [
+   "pin"
+  ],
+  "primary": "pin",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1b3i8f9",
+  "fen": "2n2k2/7R/8/P2r4/K2p1p2/3B4/8/8 w - - 2 52",
+  "lead": {
+   "fen": "2nr1k2/7R/8/P7/K2p1p2/3B4/8/8 b - - 1 51",
+   "uci": "d8d5"
+  },
+  "solution": [
+   "h7h8",
+   "f8e7",
+   "h8c8"
+  ],
+  "themes": [
+   "skewer"
+  ],
+  "primary": "skewer",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1b6dy2o",
+  "fen": "4Rrk1/5p1p/6p1/p5r1/q7/2Q5/P4PP1/4R1K1 w - - 6 31",
+  "lead": {
+   "fen": "4Rrk1/5p1p/6p1/p5r1/8/2Q5/P4PP1/3qR1K1 b - - 5 30",
+   "uci": "d1a4"
+  },
+  "solution": [
+   "e8f8",
+   "g8f8",
+   "c3h8"
+  ],
+  "themes": [
+   "mateIn2",
+   "mate"
+  ],
+  "primary": "mateIn2",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1bbq8j8",
+  "fen": "r4rk1/p2n1p1p/1p1p2p1/2pQq3/P3P2P/2P2P2/2P3P1/R1B1K2R b - - 0 17",
+  "lead": {
+   "fen": "r4rk1/p2n1p1p/1p1p2p1/2pQq3/P3P3/2P2P2/2P3PP/R1B1K2R w - - 1 17",
+   "uci": "h2h4"
+  },
+  "solution": [
+   "e5c3",
+   "e1e2",
+   "c3a1"
+  ],
+  "themes": [
+   "fork",
+   "pin"
+  ],
+  "primary": "pin",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1bbxqxh",
+  "fen": "r3k1r1/1ppbqn1p/p2bpp1n/6p1/4PP2/2N1B1QP/PPP3P1/2KRNB1R b q - 4 14",
+  "lead": {
+   "fen": "r3k1r1/1ppbqn1p/p2bpp1n/6p1/4PP2/2N1BNQP/PPP3P1/2KR1B1R w q - 3 14",
+   "uci": "f3e1"
+  },
+  "solution": [
+   "g5f4",
+   "g3f4",
+   "d6f4"
+  ],
+  "themes": [
+   "discoveredAttack",
+   "pin"
+  ],
+  "primary": "pin",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1bf1nq0",
+  "fen": "r1bqk2r/pp2bppp/3p4/2pPp3/3n4/1P1B2P1/P1PPNP1P/R1BQK2R b KQkq - 0 9",
+  "lead": {
+   "fen": "r1bqk2r/pp2bppp/3p4/2pPp3/3n4/1P1B4/P1PPNPPP/R1BQK2R w KQkq - 1 9",
+   "uci": "g2g3"
+  },
+  "solution": [
+   "d4f3",
+   "e1f1",
+   "c8h3"
+  ],
+  "themes": [
+   "mateIn2",
+   "mate"
+  ],
+  "primary": "mateIn2",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1da0ckd",
+  "fen": "1r2k2r/2p2pp1/p1b2n1p/3pn3/4P2P/3P2P1/PBB1N3/1R2K2R w Kk - 0 24",
+  "lead": {
+   "fen": "1r2k2r/2p2pp1/p1bp1n1p/4n3/4P2P/3P2P1/PBB1N3/1R2K2R b Kk - 0 23",
+   "uci": "d6d5"
+  },
+  "solution": [
+   "b2e5",
+   "b8b1",
+   "c2b1"
+  ],
+  "themes": [
+   "discoveredAttack"
+  ],
+  "primary": "discoveredAttack",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1ebrkev",
+  "fen": "2r1r1k1/6Pp/7P/p4Q2/1b3p2/8/1P3PP1/6K1 w - - 2 38",
+  "lead": {
+   "fen": "2r3k1/4r1Pp/7P/p4Q2/1b3p2/8/1P3PP1/6K1 b - - 1 37",
+   "uci": "e7e8"
+  },
+  "solution": [
+   "f5d5",
+   "e8e6",
+   "d5e6"
+  ],
+  "themes": [
+   "mateIn2",
+   "mate"
+  ],
+  "primary": "mateIn2",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1f6ssqp",
+  "fen": "4r3/1p1n3p/5p2/4q2k/P7/6R1/6PP/2Q4K b - - 0 40",
+  "lead": {
+   "fen": "4r3/1p1n3p/5p2/4q2k/8/6R1/P5PP/2Q4K w - - 2 40",
+   "uci": "a2a4"
+  },
+  "solution": [
+   "e5e1",
+   "c1e1",
+   "e8e1"
+  ],
+  "themes": [
+   "fork",
+   "mateIn2",
+   "backRank",
+   "mate"
+  ],
+  "primary": "backRank",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1g8rtxe",
+  "fen": "1r4kr/p2q2p1/2p1p1np/5p2/1P6/P5P1/3QR3/B4RK1 w - - 0 39",
+  "lead": {
+   "fen": "1r4kr/p2q2pp/2p1p1n1/5p2/1P6/P5P1/3QR3/B4RK1 b - - 4 38",
+   "uci": "h7h6"
+  },
+  "solution": [
+   "d2d7",
+   "e6e5",
+   "a1e5"
+  ],
+  "themes": [
+   "hangingPiece"
+  ],
+  "primary": "hangingPiece",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1h985f0",
+  "fen": "3b1r2/1p2k1p1/1Pnp3p/4p3/2B1Pn2/4BKP1/1R1N1P1P/8 b - - 5 32",
+  "lead": {
+   "fen": "3b1r2/1p2k1p1/1Pnp3p/4p3/2B1Pn2/4B1P1/1R1N1PKP/8 w - - 4 32",
+   "uci": "g2f3"
+  },
+  "solution": [
+   "f4d3",
+   "f3g2",
+   "d3b2"
+  ],
+  "themes": [
+   "discoveredAttack"
+  ],
+  "primary": "discoveredAttack",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1jmju5n",
+  "fen": "3r3k/p1q4p/r4p2/2p3p1/2N1B3/3R2PP/n4P1K/3R4 w - - 2 38",
+  "lead": {
+   "fen": "5r1k/p1q4p/r4p2/2p3p1/2N1B3/3R2PP/n4P1K/3R4 b - - 1 37",
+   "uci": "f8d8"
+  },
+  "solution": [
+   "d3d8",
+   "c7d8",
+   "d1d8"
+  ],
+  "themes": [
+   "hangingPiece"
+  ],
+  "primary": "hangingPiece",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1l63y17",
+  "fen": "2brk3/1p1n2p1/r1p1pp2/P1B4p/3P1P1P/5B2/R5P1/R5K1 w - - 0 32",
+  "lead": {
+   "fen": "2brk3/1p1n1pp1/r1p1p3/P1B4p/3P1P1P/5B2/R5P1/R5K1 b - - 0 31",
+   "uci": "f7f6"
+  },
+  "solution": [
+   "f3h5",
+   "g7g6",
+   "h5g6"
+  ],
+  "themes": [
+   "mateIn2",
+   "mate"
+  ],
+  "primary": "mateIn2",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1l9k6r0",
+  "fen": "4r3/1p1n3p/5p1k/8/8/6R1/P3q1PP/1Q5K b - - 13 45",
+  "lead": {
+   "fen": "4r3/1p1n3p/5p1k/8/8/6R1/P3q1PP/3Q3K w - - 12 45",
+   "uci": "d1b1"
+  },
+  "solution": [
+   "e2e1",
+   "b1e1",
+   "e8e1"
+  ],
+  "themes": [
+   "fork",
+   "mateIn2",
+   "backRank",
+   "mate"
+  ],
+  "primary": "backRank",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1mldd3c",
+  "fen": "3r2k1/1b2r1p1/p4p1p/1p3q2/2P1PP1P/5QP1/PB2R3/5RK1 w - - 1 29",
+  "lead": {
+   "fen": "2qr2k1/1b2r1p1/p4p1p/1p6/2P1PP1P/5QP1/PB2R3/5RK1 b - - 0 28",
+   "uci": "c8f5"
+  },
+  "solution": [
+   "e4f5",
+   "b7f3",
+   "e2e7"
+  ],
+  "themes": [
+   "discoveredAttack"
+  ],
+  "primary": "discoveredAttack",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1o6tjlf",
+  "fen": "2n2k2/7R/3r4/P7/K2p1p2/3B4/8/8 w - - 6 54",
+  "lead": {
+   "fen": "2nr1k2/7R/8/P7/K2p1p2/3B4/8/8 b - - 5 53",
+   "uci": "d8d6"
+  },
+  "solution": [
+   "h7h8",
+   "f8e7",
+   "h8c8"
+  ],
+  "themes": [
+   "skewer"
+  ],
+  "primary": "skewer",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1p9f8ru",
+  "fen": "1k2r3/6p1/8/Ppbp1p2/2r5/4pnPR/1Q6/4RK2 w - - 2 42",
+  "lead": {
+   "fen": "1k2rb2/6p1/8/Pp1p1p2/2r5/4pnPR/1Q6/4RK2 b - - 1 41",
+   "uci": "f8c5"
+  },
+  "solution": [
+   "b2b5",
+   "b8c7",
+   "b5e8"
+  ],
+  "themes": [
+   "fork"
+  ],
+  "primary": "fork",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1r4k93t",
+  "fen": "4r1k1/pp3ppp/8/Pb1p4/3P1B2/2P5/4rPPP/2R1R1K1 b - - 2 23",
+  "lead": {
+   "fen": "4r1k1/pp3ppp/8/Pb1p4/3P1B2/2P5/4rPPP/2R2RK1 w - - 1 23",
+   "uci": "f1e1"
+  },
+  "solution": [
+   "e2e1",
+   "c1e1",
+   "e8e1"
+  ],
+  "themes": [
+   "hangingPiece",
+   "mateIn2",
+   "backRank",
+   "mate"
+  ],
+  "primary": "backRank",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1seb2pg",
+  "fen": "4q1k1/p4rp1/1p1p1b2/r2P1b2/4P2p/2PB3P/P3QP1K/1RB2R2 w - - 1 27",
+  "lead": {
+   "fen": "4qrk1/p5p1/1p1p1b2/r2P1b2/4P2p/2PB3P/P3QP1K/1RB2R2 b - - 0 26",
+   "uci": "f8f7"
+  },
+  "solution": [
+   "e4f5",
+   "e8e2",
+   "d3e2"
+  ],
+  "themes": [
+   "discoveredAttack"
+  ],
+  "primary": "discoveredAttack",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1us3732",
+  "fen": "8/4kp2/3R4/p1PbN3/8/1N3pK1/1r6/8 b - - 5 51",
+  "lead": {
+   "fen": "8/4kp2/3R4/p1PbN3/8/1N3p2/1r3K2/8 w - - 4 51",
+   "uci": "f2g3"
+  },
+  "solution": [
+   "f3f2",
+   "d6d5",
+   "f2f1q"
+  ],
+  "themes": [
+   "promotion"
+  ],
+  "primary": "promotion",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1vc54wi",
+  "fen": "8/7k/6p1/4P3/2b3P1/1p2B3/5K2/8 b - - 1 43",
+  "lead": {
+   "fen": "8/7k/6p1/4P3/2bB2P1/1p6/5K2/8 w - - 0 43",
+   "uci": "d4e3"
+  },
+  "solution": [
+   "b3b2",
+   "e5e6",
+   "b2b1q"
+  ],
+  "themes": [
+   "promotion"
+  ],
+  "primary": "promotion",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p231qfl",
+  "fen": "r1b1kb1r/3p1p1p/p1q3p1/1p1Qp3/4P2P/8/PPP1NPP1/R1B1K2R w KQkq - 3 17",
+  "lead": {
+   "fen": "r1b1k2r/3p1pbp/p1q3p1/1p1Qp3/4P2P/8/PPP1NPP1/R1B1K2R b KQkq - 2 16",
+   "uci": "g7f8"
+  },
+  "solution": [
+   "d5e5",
+   "c6e6",
+   "e5h8"
+  ],
+  "themes": [
+   "fork",
+   "pin"
+  ],
+  "primary": "pin",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p2pgplp",
+  "fen": "4r1k1/pp1b1ppp/8/3p4/P2P1B2/2P5/4rPPP/2R1R1K1 b - - 1 22",
+  "lead": {
+   "fen": "4r1k1/pp1b1ppp/8/3p4/P2P1B2/2P5/4rPPP/2R2RK1 w - - 0 22",
+   "uci": "f1e1"
+  },
+  "solution": [
+   "e2e1",
+   "c1e1",
+   "e8e1"
+  ],
+  "themes": [
+   "hangingPiece",
+   "mateIn2",
+   "backRank",
+   "mate"
+  ],
+  "primary": "backRank",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p524l1y",
+  "fen": "3r2k1/2r2p2/8/2pQ4/4P3/2P1BPp1/2P1K1Pq/6R1 b - - 8 35",
+  "lead": {
+   "fen": "3r2k1/2r2p2/8/2p5/2Q1P3/2P1BPp1/2P1K1Pq/6R1 w - - 7 35",
+   "uci": "c4d5"
+  },
+  "solution": [
+   "d8d5",
+   "e4d5",
+   "c7e7"
+  ],
+  "themes": [
+   "pin"
+  ],
+  "primary": "pin",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p6t91jc",
+  "fen": "r3k2r/ppp1nppp/2np2q1/8/2P1P2P/1Q4P1/PP3P2/RN2KB1R b KQkq - 2 12",
+  "lead": {
+   "fen": "r3k2r/ppp1nppp/2np2q1/8/2P1P2P/6P1/PPQ2P2/RN2KB1R w KQkq - 1 12",
+   "uci": "c2b3"
+  },
+  "solution": [
+   "g6e4",
+   "b3e3",
+   "e4h1"
+  ],
+  "themes": [
+   "fork",
+   "pin"
+  ],
+  "primary": "pin",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p9by4f5",
+  "fen": "1q1r4/5p1r/1p1pk2p/p1p1pNn1/P1P1PnP1/4KP2/1PB3R1/3RQ3 b - - 23 47",
+  "lead": {
+   "fen": "1q1r4/5p1r/1p1pk2p/p1p1pNn1/P1P1PnP1/4KP2/1PBR4/3RQ3 w - - 22 47",
+   "uci": "d2g2"
+  },
+  "solution": [
+   "f4g2",
+   "e3d3",
+   "g2e1"
+  ],
+  "themes": [
+   "fork"
+  ],
+  "primary": "fork",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p9vobw8",
+  "fen": "3rkbr1/R6p/5p2/P3p3/2p3pN/8/P2R1PPP/2K5 b - - 1 38",
+  "lead": {
+   "fen": "3rkbr1/R6p/5p2/P3p3/2p3pN/8/P3RPPP/2K5 w - - 0 38",
+   "uci": "e2d2"
+  },
+  "solution": [
+   "f8h6",
+   "h4f5",
+   "h6d2"
+  ],
+  "themes": [
+   "pin"
+  ],
+  "primary": "pin",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "pa1l7lw",
+  "fen": "2b3kr/p1R2pb1/q7/1Q3pBp/3P4/2P4P/1P3PP1/6K1 b - - 5 33",
+  "lead": {
+   "fen": "2b3kr/p1R2pb1/q7/Q4pBp/3P4/2P4P/1P3PP1/6K1 w - - 4 33",
+   "uci": "a5b5"
+  },
+  "solution": [
+   "a6b5",
+   "c7c8",
+   "g8h7"
+  ],
+  "themes": [
+   "hangingPiece",
+   "discoveredAttack"
+  ],
+  "primary": "discoveredAttack",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "pe8cxyi",
+  "fen": "3r4/5p2/6p1/2Pnk2p/R3p2P/6P1/P2K1P2/5B2 b - - 8 45",
+  "lead": {
+   "fen": "3r4/5p2/6p1/2Pnk2p/R3p2P/2K3P1/P4P2/5B2 w - - 7 45",
+   "uci": "c3d2"
+  },
+  "solution": [
+   "d5b6",
+   "d2c2",
+   "b6a4"
+  ],
+  "themes": [
+   "discoveredAttack"
+  ],
+  "primary": "discoveredAttack",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "pfjr477",
+  "fen": "2r1r3/p2qnk1p/1p1p1pp1/3P1b1P/B1PQp3/2PnB1N1/P3K1P1/R4R2 b - - 4 20",
+  "lead": {
+   "fen": "2r1r3/p2qnk1p/1p1p1pp1/3P1b1P/2PQp3/2PnB1N1/P3K1P1/R2B1R2 w - - 3 20",
+   "uci": "d1a4"
+  },
+  "solution": [
+   "d7a4",
+   "h5g6",
+   "h7g6"
+  ],
+  "themes": [
+   "hangingPiece"
+  ],
+  "primary": "hangingPiece",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "pggp5ae",
+  "fen": "5k2/r3bppp/1p6/p4Q2/7P/6PK/5P2/8 w - - 3 46",
+  "lead": {
+   "fen": "5k2/3rbppp/1p6/p4Q2/7P/6PK/5P2/8 b - - 2 45",
+   "uci": "d7a7"
+  },
+  "solution": [
+   "f5c8",
+   "e7d8",
+   "c8d8"
+  ],
+  "themes": [
+   "mateIn2",
+   "mate"
+  ],
+  "primary": "mateIn2",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "phjjnry",
+  "fen": "6k1/6p1/p3np1p/8/N7/1P2R3/P1r2PPP/2R3K1 b - - 1 29",
+  "lead": {
+   "fen": "6k1/6p1/p3np1p/8/N7/1P2R3/P1r2PPP/5RK1 w - - 0 29",
+   "uci": "f1c1"
+  },
+  "solution": [
+   "c2c1",
+   "e3e1",
+   "c1e1"
+  ],
+  "themes": [
+   "hangingPiece",
+   "mateIn2",
+   "backRank",
+   "mate"
+  ],
+  "primary": "backRank",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "pnxiway",
+  "fen": "1rb2kr1/pp3pb1/4p1pp/2N4n/2B4P/2P2NP1/PP3P2/3RK2R w K - 3 19",
+  "lead": {
+   "fen": "1rb2k1r/pp3pb1/4p1pp/2N4n/2B4P/2P2NP1/PP3P2/3RK2R b K - 2 18",
+   "uci": "h8g8"
+  },
+  "solution": [
+   "d1d8",
+   "f8e7",
+   "d8g8"
+  ],
+  "themes": [
+   "pin"
+  ],
+  "primary": "pin",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "po978wb",
+  "fen": "8/R2R4/3p3k/3Pp2p/2p1P2P/2N3r1/P4r2/1K6 b - - 0 39",
+  "lead": {
+   "fen": "8/R1Rb4/3p3k/3Pp2p/2p1P2P/2N3r1/P4r2/1K6 w - - 0 39",
+   "uci": "c7d7"
+  },
+  "solution": [
+   "g3g1",
+   "c3d1",
+   "g1d1"
+  ],
+  "themes": [
+   "mateIn2",
+   "mate"
+  ],
+  "primary": "mateIn2",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "powdf2r",
+  "fen": "3rk2r/pp1q1ppp/2np1nb1/3B4/3N4/B1P1P3/P1P2PPP/1R1QK2R b Kk - 11 12",
+  "lead": {
+   "fen": "3rk2r/pp1q1ppp/2np1nb1/8/2BN4/B1P1P3/P1P2PPP/1R1QK2R w Kk - 10 12",
+   "uci": "c4d5"
+  },
+  "solution": [
+   "f6d5",
+   "d4b5",
+   "c6b4"
+  ],
+  "themes": [
+   "hangingPiece",
+   "discoveredAttack"
+  ],
+  "primary": "discoveredAttack",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "pqz91sj",
+  "fen": "3k2r1/R7/5p2/4p3/6p1/8/PK4PP/8 w - - 1 52",
+  "lead": {
+   "fen": "4k1r1/R7/5p2/4p3/6p1/8/PK4PP/8 b - - 0 51",
+   "uci": "e8d8"
+  },
+  "solution": [
+   "a7a8",
+   "d8e7",
+   "a8g8"
+  ],
+  "themes": [
+   "skewer"
+  ],
+  "primary": "skewer",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "prjfeph",
+  "fen": "5k2/4bppp/1p6/pr6/5Q1P/7K/5PP1/8 w - - 2 44",
+  "lead": {
+   "fen": "5k2/4bppp/1p6/p1r5/5Q1P/7K/5PP1/8 b - - 1 43",
+   "uci": "c5b5"
+  },
+  "solution": [
+   "f4b8",
+   "e7d8",
+   "b8d8"
+  ],
+  "themes": [
+   "mateIn2",
+   "mate"
+  ],
+  "primary": "mateIn2",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "psezkae",
+  "fen": "8/2r4k/1p2pQpb/p3P3/3P4/5r1q/6R1/4R1K1 w - - 0 51",
+  "lead": {
+   "fen": "8/2r4k/1p2pQpb/p3P3/3P4/2r2N1q/6R1/4R1K1 b - - 5 50",
+   "uci": "c3f3"
+  },
+  "solution": [
+   "f6g6",
+   "h7h8",
+   "g6g8"
+  ],
+  "themes": [
+   "mateIn2",
+   "mate"
+  ],
+  "primary": "mateIn2",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "ptovrzb",
+  "fen": "3k4/1Bpb1pr1/8/2R1n2P/3r4/5N2/P6K/1R6 b - - 1 39",
+  "lead": {
+   "fen": "3k4/1Bpb1pr1/8/2R1n2P/3r4/5N2/P7/1R4K1 w - - 0 39",
+   "uci": "g1h2"
+  },
+  "solution": [
+   "e5f3",
+   "b7f3",
+   "d4h4"
+  ],
+  "themes": [
+   "mateIn2",
+   "mate"
+  ],
+  "primary": "mateIn2",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "puh37sm",
+  "fen": "6k1/6p1/1Rn1rp1p/p6P/P5P1/2B2K2/1P6/8 b - - 0 39",
+  "lead": {
+   "fen": "6k1/1R4p1/1pn1rp1p/p6P/P5P1/2B2K2/1P6/8 w - - 4 39",
+   "uci": "b7b6"
+  },
+  "solution": [
+   "c6e5",
+   "c3e5",
+   "e6b6"
+  ],
+  "themes": [
+   "discoveredAttack"
+  ],
+  "primary": "discoveredAttack",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "pv56i0r",
+  "fen": "2kr1r2/Qpp2pp1/5P2/1b1P2NP/4P1n1/3q4/P7/R1R3KB b - - 2 31",
+  "lead": {
+   "fen": "2kr1r2/Qpp2pp1/5P2/1b1P2NP/4P1n1/3q4/P5B1/R1R3K1 w - - 1 31",
+   "uci": "g2h1"
+  },
+  "solution": [
+   "d3g3",
+   "h1g2",
+   "g3h2"
+  ],
+  "themes": [
+   "mateIn2",
+   "mate"
+  ],
+  "primary": "mateIn2",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "pw7vgo3",
+  "fen": "2r1k2r/1p1bbpp1/pq1p1n1p/8/1PnN4/P1N1P2P/2QBBPP1/1R2K2R b Kk - 1 18",
+  "lead": {
+   "fen": "2r1k2r/1p1bbpp1/pq1p1n1p/8/1PnN4/P1N1P2P/2QBBPP1/2R1K2R w Kk - 0 18",
+   "uci": "c1b1"
+  },
+  "solution": [
+   "c4a3",
+   "c2a2",
+   "a3b1"
+  ],
+  "themes": [
+   "fork"
+  ],
+  "primary": "fork",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "pwx6mru",
+  "fen": "2r1rk2/p5p1/2p1b3/1pP3R1/1Pn2B1p/1K3P1P/8/3R1B2 b - - 2 34",
+  "lead": {
+   "fen": "2r1rk2/p5p1/2p1b3/1pP3R1/1Pn2B1p/5P1P/2K5/3R1B2 w - - 1 34",
+   "uci": "c2b3"
+  },
+  "solution": [
+   "c4e3",
+   "b3c3",
+   "e3d1"
+  ],
+  "themes": [
+   "discoveredAttack"
+  ],
+  "primary": "discoveredAttack",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "px5rjhh",
+  "fen": "5n2/4b2k/R6P/3P1p1P/8/p4K2/8/8 w - - 1 45",
+  "lead": {
+   "fen": "5n2/7k/R6P/3P1p1P/1b6/p4K2/8/8 b - - 0 44",
+   "uci": "b4e7"
+  },
+  "solution": [
+   "a6a7",
+   "h7h6",
+   "a7e7"
+  ],
+  "themes": [
+   "pin"
+  ],
+  "primary": "pin",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "pxcgt4e",
+  "fen": "2k5/8/2r5/3N4/4n1p1/8/4R2K/8 w - - 4 53",
+  "lead": {
+   "fen": "2k5/8/8/3N4/4n1p1/2r5/4R2K/8 b - - 3 52",
+   "uci": "c3c6"
+  },
+  "solution": [
+   "d5e7",
+   "c8b7",
+   "e7c6"
+  ],
+  "themes": [
+   "fork"
+  ],
+  "primary": "fork",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "py5c0ec",
+  "fen": "8/1P3p1k/6p1/6P1/p7/7K/5q2/1Q6 w - - 12 65",
+  "lead": {
+   "fen": "6k1/1P3p2/6p1/6P1/p7/7K/5q2/1Q6 b - - 11 64",
+   "uci": "g8h7"
+  },
+  "solution": [
+   "b7b8q",
+   "f2e3",
+   "b8g3"
+  ],
+  "themes": [
+   "promotion"
+  ],
+  "primary": "promotion",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "pz241qn",
+  "fen": "2r3k1/p2n1pp1/4p3/1P5p/3qb3/3R1PQ1/4B1PP/2r2R1K w - - 4 42",
+  "lead": {
+   "fen": "b1r3k1/p2n1pp1/4p3/1P5p/3q4/3R1PQ1/4B1PP/2r2R1K b - - 3 41",
+   "uci": "a8e4"
+  },
+  "solution": [
+   "d3d4",
+   "c1f1",
+   "e2f1"
+  ],
+  "themes": [
+   "hangingPiece"
+  ],
+  "primary": "hangingPiece",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "pzoy3vd",
+  "fen": "2r2k1r/p2b1ppp/1p1P4/3nB3/8/1N6/PP3PPP/R3K2R b KQ - 1 19",
+  "lead": {
+   "fen": "2r2k1r/p2b1ppp/1p1P4/3n4/8/1N4B1/PP3PPP/R3K2R w KQ - 0 19",
+   "uci": "g3e5"
+  },
+  "solution": [
+   "c8e8",
+   "e1g1",
+   "e8e5"
+  ],
+  "themes": [
+   "pin"
+  ],
+  "primary": "pin",
+  "level": 2,
+  "origin": "self-play"
+ },
+ {
+  "id": "p11fditg",
+  "fen": "5K1k/5p2/3R2p1/5r2/8/5b2/8/5R2 w - - 2 70",
+  "lead": {
+   "fen": "5K1k/5p2/3R2p1/8/5r2/5b2/8/5R2 b - - 1 69",
+   "uci": "f4f5"
+  },
+  "solution": [
+   "d6d2",
+   "f3h5",
+   "f1f5",
+   "g6f5",
+   "d2h2",
+   "h8h7",
+   "h2h5"
+  ],
+  "themes": [
+   "pin"
+  ],
+  "primary": "pin",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "p16a8myd",
+  "fen": "r4rk1/3n1pp1/p1b1p2p/2b5/p1N1P3/2q2NP1/2B1QPKP/2RR4 w - - 6 20",
+  "lead": {
+   "fen": "r4rk1/1b1n1pp1/p3p2p/2b5/p1N1P3/2q2NP1/2B1QPKP/2RR4 b - - 5 19",
+   "uci": "b7c6"
+  },
+  "solution": [
+   "c2a4",
+   "c3c1",
+   "a4c6",
+   "c1c3",
+   "c6a8"
+  ],
+  "themes": [
+   "discoveredAttack",
+   "fork"
+  ],
+  "primary": "fork",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "p17f8w0l",
+  "fen": "rn2k2r/pppb1ppp/8/3pp1q1/QbPPn3/4P3/PP1NBPPP/RNB1K2R w KQkq - 5 8",
+  "lead": {
+   "fen": "rnb1k2r/ppp2ppp/8/3pp1q1/QbPPn3/4P3/PP1NBPPP/RNB1K2R b KQkq - 4 7",
+   "uci": "c8d7"
+  },
+  "solution": [
+   "a4b4",
+   "b8c6",
+   "b4a3",
+   "g5g2",
+   "h1f1"
+  ],
+  "themes": [
+   "hangingPiece"
+  ],
+  "primary": "hangingPiece",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "p19jul6t",
+  "fen": "r1r5/1p2bp1p/p3k1p1/3pP3/3R1P2/8/PP2B2P/2R3K1 w - - 4 25",
+  "lead": {
+   "fen": "r2r4/1p2bp1p/p3k1p1/3pP3/3R1P2/8/PP2B2P/2R3K1 b - - 3 24",
+   "uci": "d8c8"
+  },
+  "solution": [
+   "e2g4",
+   "f7f5",
+   "e5f6",
+   "e6f6",
+   "g4c8"
+  ],
+  "themes": [
+   "skewer"
+  ],
+  "primary": "skewer",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "p19lrpk2",
+  "fen": "6k1/pp3p1p/8/3P4/2N4P/1PqbR2p/P7/1R1K1B2 b - - 1 32",
+  "lead": {
+   "fen": "6k1/pp3p1p/8/3P4/7P/NPqbR2p/P7/1R1K1B2 w - - 0 32",
+   "uci": "a3c4"
+  },
+  "solution": [
+   "c3c2",
+   "d1e1",
+   "c2b1",
+   "e1d2",
+   "b1c2",
+   "d2e1",
+   "c2b1"
+  ],
+  "themes": [
+   "fork"
+  ],
+  "primary": "fork",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1c7muuk",
+  "fen": "4k3/1b2P3/5pr1/8/3p3R/1PpN4/5PP1/6K1 w - - 0 42",
+  "lead": {
+   "fen": "4k1r1/1b2P3/5pP1/8/3p3R/1PpN4/5PP1/6K1 b - - 2 41",
+   "uci": "g8g6"
+  },
+  "solution": [
+   "h4h8",
+   "e8e7",
+   "h8h7",
+   "e7d6",
+   "h7b7"
+  ],
+  "themes": [
+   "skewer"
+  ],
+  "primary": "skewer",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1czy2nd",
+  "fen": "r7/2p4r/3p1nk1/3Pp1pp/N3P1P1/PP2qPR1/K6R/Q7 b - - 3 47",
+  "lead": {
+   "fen": "r7/2p4r/3p1nk1/3Pp1pp/N3P1P1/PP2qPR1/K6R/5Q2 w - - 2 47",
+   "uci": "f1a1"
+  },
+  "solution": [
+   "h5g4",
+   "h2g2",
+   "h7h3",
+   "a1c3",
+   "h3g3",
+   "c3e3",
+   "g3g2"
+  ],
+  "themes": [
+   "discoveredAttack"
+  ],
+  "primary": "discoveredAttack",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1dlvmqu",
+  "fen": "r3r1k1/pp3pp1/7p/b2p4/3P2bP/2NBB1P1/PPK3P1/1R4R1 b - - 0 23",
+  "lead": {
+   "fen": "r3r1k1/pp3pp1/7p/b2p4/3P2bP/2NBB1n1/PPK2PP1/1R4R1 w - - 15 23",
+   "uci": "f2g3"
+  },
+  "solution": [
+   "e8e3",
+   "b2b4",
+   "a5b6",
+   "c3d5",
+   "e3g3",
+   "d5b6",
+   "a7b6"
+  ],
+  "themes": [
+   "hangingPiece"
+  ],
+  "primary": "hangingPiece",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1e9umnv",
+  "fen": "1qr5/2k2p1r/1p1pn2p/p1p1pN2/P1P1PnPQ/1P2KP2/2BR4/3R4 w - - 3 51",
+  "lead": {
+   "fen": "1q1r4/2k2p1r/1p1pn2p/p1p1pN2/P1P1PnPQ/1P2KP2/2BR4/3R4 b - - 2 50",
+   "uci": "d8c8"
+  },
+  "solution": [
+   "h4e7",
+   "c7c6",
+   "d2d6",
+   "b8d6",
+   "d1d6"
+  ],
+  "themes": [
+   "mateIn3",
+   "mate"
+  ],
+  "primary": "mateIn3",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1i406i3",
+  "fen": "6rk/ppp3p1/5P1p/8/P3R3/2P5/6PP/6K1 w - - 1 30",
+  "lead": {
+   "fen": "2r4k/ppp3p1/5P1p/8/P3R3/2P5/6PP/6K1 b - - 0 29",
+   "uci": "c8g8"
+  },
+  "solution": [
+   "f6f7",
+   "g8f8",
+   "e4e8",
+   "h8h7",
+   "e8f8"
+  ],
+  "themes": [
+   "pin"
+  ],
+  "primary": "pin",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1kvyfpx",
+  "fen": "8/5p2/p1p2k2/B1Pp4/P2P2Pb/4K3/6P1/8 w - - 13 47",
+  "lead": {
+   "fen": "8/5p2/p1p3k1/B1Pp4/P2P2Pb/4K3/6P1/8 b - - 12 46",
+   "uci": "g6f6"
+  },
+  "solution": [
+   "a5d8",
+   "f6e6",
+   "d8h4",
+   "e6d7",
+   "e3f3"
+  ],
+  "themes": [
+   "skewer"
+  ],
+  "primary": "skewer",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1lwkhb7",
+  "fen": "5k2/p1p2p2/3b4/2pN1b2/8/4B2P/PP2KPr1/7R w - - 5 29",
+  "lead": {
+   "fen": "5k2/p1p2p2/3b2r1/2pN1b2/8/4B2P/PP2KP2/7R b - - 4 28",
+   "uci": "g6g2"
+  },
+  "solution": [
+   "e3h6",
+   "f8e8",
+   "d5e3",
+   "f5e4",
+   "e3g2"
+  ],
+  "themes": [
+   "fork"
+  ],
+  "primary": "fork",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1n4dor4",
+  "fen": "r2q1r1k/1p3p1p/4p3/pBb2p2/2Pn1Q2/8/PP1N1PPP/3R1RK1 b - - 1 21",
+  "lead": {
+   "fen": "r2q1r1k/1p3p1p/4p3/pBb2p2/2Pn3Q/8/PP1N1PPP/3R1RK1 w - - 0 21",
+   "uci": "h4f4"
+  },
+  "solution": [
+   "d4e2",
+   "g1h1",
+   "e2f4",
+   "b5a4",
+   "d8g5",
+   "g2g3",
+   "g5h5"
+  ],
+  "themes": [
+   "fork"
+  ],
+  "primary": "fork",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1pmr7gz",
+  "fen": "3r4/5p2/6p1/2P1k2p/Rn2p2P/4K1P1/P4P2/5B2 b - - 6 44",
+  "lead": {
+   "fen": "3r4/5p2/6p1/2P1k2p/Rn2p2P/6P1/P2K1P2/5B2 w - - 5 44",
+   "uci": "d2e3"
+  },
+  "solution": [
+   "b4d5",
+   "e3d2",
+   "d5b6",
+   "d2c3",
+   "b6a4"
+  ],
+  "themes": [
+   "discoveredAttack"
+  ],
+  "primary": "discoveredAttack",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1qc2qez",
+  "fen": "2r1k1nr/ppp2ppp/2npq3/8/2P4P/6P1/PPQ1PP2/RN2KB1R w KQk - 2 11",
+  "lead": {
+   "fen": "r3k1nr/ppp2ppp/2npq3/8/2P4P/6P1/PPQ1PP2/RN2KB1R b KQkq - 1 10",
+   "uci": "a8c8"
+  },
+  "solution": [
+   "f1h3",
+   "f7f5",
+   "h3f5",
+   "e6e5",
+   "f5c8"
+  ],
+  "themes": [
+   "skewer"
+  ],
+  "primary": "skewer",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1rrjd1o",
+  "fen": "r1r5/1p2bp2/p3k1p1/3pP2p/3R1P2/8/PP5P/2R2BK1 w - - 2 26",
+  "lead": {
+   "fen": "r2r4/1p2bp2/p3k1p1/3pP2p/3R1P2/8/PP5P/2R2BK1 b - - 1 25",
+   "uci": "d8c8"
+  },
+  "solution": [
+   "f1h3",
+   "f7f5",
+   "e5f6",
+   "e6f6",
+   "h3c8"
+  ],
+  "themes": [
+   "skewer"
+  ],
+  "primary": "skewer",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1udg5yc",
+  "fen": "8/5p2/p1p3k1/B1Pp4/P2P2Pb/2K5/6P1/8 b - - 16 48",
+  "lead": {
+   "fen": "8/5p2/p1p3k1/B1Pp4/P2P2Pb/3K4/6P1/8 w - - 15 48",
+   "uci": "d3c3"
+  },
+  "solution": [
+   "h4e1",
+   "c3d3",
+   "e1a5",
+   "g2g3",
+   "g6g5"
+  ],
+  "themes": [
+   "skewer"
+  ],
+  "primary": "skewer",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "p1worsjy",
+  "fen": "3q4/p5k1/3p2p1/pP1b1P2/2pbr1pP/R5Q1/1P4P1/2B2R1K b - - 0 29",
+  "lead": {
+   "fen": "3q4/p5k1/3p2p1/pP1b1P2/2pbr1p1/R5QP/1P4P1/2B2R1K w - - 0 29",
+   "uci": "h3h4"
+  },
+  "solution": [
+   "e4e2",
+   "g3g4",
+   "d5g2",
+   "g4g2",
+   "e2g2"
+  ],
+  "themes": [
+   "fork"
+  ],
+  "primary": "fork",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "p30db2",
+  "fen": "7r/Q4pk1/3Bp3/P4p2/P5q1/4P3/6BP/4rN1K w - - 5 37",
+  "lead": {
+   "fen": "6r1/Q4pk1/3Bp3/P4p2/P5q1/4P3/6BP/4rN1K b - - 4 36",
+   "uci": "g8h8"
+  },
+  "solution": [
+   "d6e5",
+   "g7g6",
+   "e5h8",
+   "e1f1",
+   "g2f1",
+   "g4e4",
+   "h1g1"
+  ],
+  "themes": [
+   "skewer"
+  ],
+  "primary": "skewer",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "p5xegm9",
+  "fen": "r1b2b1r/1p1k1ppp/p3pn2/2pq4/8/N1PP1N2/PP2QPPP/R1B1K2R w KQ - 2 10",
+  "lead": {
+   "fen": "r1b1kb1r/1p3ppp/p3pn2/2pq4/8/N1PP1N2/PP2QPPP/R1B1K2R b KQkq - 1 9",
+   "uci": "e8d7"
+  },
+  "solution": [
+   "a3c4",
+   "d7e8",
+   "c4b6",
+   "d5c6",
+   "b6a8"
+  ],
+  "themes": [
+   "fork"
+  ],
+  "primary": "fork",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "p8q30fm",
+  "fen": "8/8/7r/1p6/2k5/4P3/5P2/R4K2 b - - 1 48",
+  "lead": {
+   "fen": "8/8/7r/1p6/2k5/4P3/4KP2/R7 w - - 0 48",
+   "uci": "e2f1"
+  },
+  "solution": [
+   "h6h1",
+   "f1e2",
+   "h1a1",
+   "e2d2",
+   "a1a2",
+   "d2e1",
+   "b5b4"
+  ],
+  "themes": [
+   "skewer"
+  ],
+  "primary": "skewer",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "pahx55v",
+  "fen": "5k2/p1p2p2/3b4/2pN4/4r3/4B2b/PP3P2/2KR4 w - - 4 32",
+  "lead": {
+   "fen": "5k2/p1p2p2/3b4/2pNr3/8/4B2b/PP3P2/2KR4 b - - 3 31",
+   "uci": "e5e4"
+  },
+  "solution": [
+   "e3h6",
+   "f8e8",
+   "d5f6",
+   "e8e7",
+   "f6e4"
+  ],
+  "themes": [
+   "fork"
+  ],
+  "primary": "fork",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "pamqh5x",
+  "fen": "7Q/5k2/4ppr1/P4p2/2q5/4P1B1/6BP/3r1NK1 w - - 8 45",
+  "lead": {
+   "fen": "7Q/5k2/4ppr1/P4p2/6q1/4P1B1/6BP/3r1NK1 b - - 7 44",
+   "uci": "g4c4"
+  },
+  "solution": [
+   "h8h7",
+   "g6g7",
+   "h7h5",
+   "f7e7",
+   "h5d1"
+  ],
+  "themes": [
+   "fork"
+  ],
+  "primary": "fork",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "pbaqbyq",
+  "fen": "r2q2rk/5p1p/1p2p3/pBb2p1Q/2Pn4/3R1N2/PP3PPP/5RK1 b - - 3 23",
+  "lead": {
+   "fen": "r2q2rk/5p1p/1p2p3/pBb2p1Q/2Pn4/5N2/PP3PPP/3R1RK1 w - - 2 23",
+   "uci": "d1d3"
+  },
+  "solution": [
+   "d4e2",
+   "g1h1",
+   "d8d3",
+   "f3e5",
+   "e2g3",
+   "h2g3",
+   "d3f1"
+  ],
+  "themes": [
+   "discoveredAttack"
+  ],
+  "primary": "discoveredAttack",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "pdsy52r",
+  "fen": "3k3r/5p1r/3p4/p1p1p1pP/PpP1Pb2/1P1P3R/4KP1N/7R b - - 1 48",
+  "lead": {
+   "fen": "3k3r/5p1r/3p4/p1p1p1pP/PpP1Pb2/1P1P1N1R/4KP2/7R w - - 0 48",
+   "uci": "f3h2"
+  },
+  "solution": [
+   "h7h5",
+   "h3h5",
+   "h8h5",
+   "e2f3",
+   "h5h2"
+  ],
+  "themes": [
+   "pin"
+  ],
+  "primary": "pin",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "peh3zp0",
+  "fen": "2b4r/1p3B1P/2p5/P1P3p1/6P1/4p1K1/3k4/7R b - - 3 52",
+  "lead": {
+   "fen": "2b4r/1p5P/2p3B1/P1P3p1/6P1/4p1K1/3k4/7R w - - 2 52",
+   "uci": "g6f7"
+  },
+  "solution": [
+   "e3e2",
+   "f7g8",
+   "e2e1q",
+   "h1e1",
+   "d2e1"
+  ],
+  "themes": [
+   "promotion"
+  ],
+  "primary": "promotion",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "peowkas",
+  "fen": "r5k1/1R3pp1/4pn1p/2b1P3/8/5QP1/1p1r1PKP/1B6 b - - 0 32",
+  "lead": {
+   "fen": "r5k1/1R3pp1/4pn1p/2b5/4P3/5QP1/1p1r1PKP/1B6 w - - 1 32",
+   "uci": "e4e5"
+  },
+  "solution": [
+   "d2f2",
+   "f3f2",
+   "c5f2",
+   "g2f2",
+   "f6g4"
+  ],
+  "themes": [
+   "fork"
+  ],
+  "primary": "fork",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "pfybv6d",
+  "fen": "5r2/2pk4/ppn4p/4Rn1B/4N3/6PP/PP6/6K1 w - - 3 29",
+  "lead": {
+   "fen": "5r2/2pkn3/pp5p/4Rn1B/4N3/6PP/PP6/6K1 b - - 2 28",
+   "uci": "e7c6"
+  },
+  "solution": [
+   "h5e8",
+   "f8e8",
+   "e4f6",
+   "d7d6",
+   "e5e8"
+  ],
+  "themes": [
+   "sacrifice",
+   "fork"
+  ],
+  "primary": "fork",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "pg5eisa",
+  "fen": "3r1r2/1b3pk1/p4qp1/2R1Q1N1/2p5/7P/1P3PP1/5RK1 w - - 8 34",
+  "lead": {
+   "fen": "5r2/1b3pk1/p4qp1/2R1Q1N1/2p5/3r3P/1P3PP1/5RK1 b - - 7 33",
+   "uci": "d3d8"
+  },
+  "solution": [
+   "e5f6",
+   "g7f6",
+   "g5h7",
+   "f6g7",
+   "h7f8"
+  ],
+  "themes": [
+   "fork"
+  ],
+  "primary": "fork",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "phx7tau",
+  "fen": "8/1K6/8/P4p1p/1k5P/8/8/8 w - - 3 48",
+  "lead": {
+   "fen": "8/1K6/8/P4p1p/7P/2k5/8/8 b - - 2 47",
+   "uci": "c3b4"
+  },
+  "solution": [
+   "a5a6",
+   "f5f4",
+   "a6a7",
+   "f4f3",
+   "a7a8q"
+  ],
+  "themes": [
+   "promotion"
+  ],
+  "primary": "promotion",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "pn441a1",
+  "fen": "4r3/2q2k2/3p1Pp1/p2P4/P5PB/1p2QRKP/2r5/8 w - - 6 41",
+  "lead": {
+   "fen": "5r2/2q2k2/3p1Pp1/p2P4/P5PB/1p2QRKP/2r5/8 b - - 5 40",
+   "uci": "f8e8"
+  },
+  "solution": [
+   "e3h6",
+   "c2g2",
+   "g3g2",
+   "f7g8",
+   "h6g6"
+  ],
+  "themes": [
+   "fork"
+  ],
+  "primary": "fork",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "pn6ya1g",
+  "fen": "2r1k2r/pp1bbpp1/1q1p1n1p/8/1PnN4/P3P2P/2QBBPP1/RN2K2R b KQk - 4 17",
+  "lead": {
+   "fen": "2r1k2r/pp1bbpp1/1q1p1n1p/8/1PnN4/P1N1P2P/2QBBPP1/R3K2R w KQk - 3 17",
+   "uci": "c3b1"
+  },
+  "solution": [
+   "c4e3",
+   "c2c8",
+   "d7c8",
+   "d2e3",
+   "f6d5"
+  ],
+  "themes": [
+   "discoveredAttack"
+  ],
+  "primary": "discoveredAttack",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "pqaekkd",
+  "fen": "6k1/5ppp/8/8/2Q5/4r2q/1r2N3/2R1R1K1 w - - 2 31",
+  "lead": {
+   "fen": "4r1k1/5ppp/8/8/2Q5/7q/1r2N3/2R1R1K1 b - - 1 30",
+   "uci": "e8e3"
+  },
+  "solution": [
+   "c4c8",
+   "h3c8",
+   "c1c8",
+   "e3e8",
+   "c8e8"
+  ],
+  "themes": [
+   "mateIn3",
+   "backRank",
+   "mate"
+  ],
+  "primary": "backRank",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "pqr047f",
+  "fen": "r4r1k/1p4pp/p6N/2q5/8/1Q6/PP3PPP/3R2K1 w - - 0 1",
+  "solution": [
+   "b3g8",
+   "f8g8",
+   "h6f7"
+  ],
+  "themes": [
+   "sacrifice",
+   "mateIn2",
+   "smothered",
+   "mate"
+  ],
+  "primary": "smothered",
+  "level": 3,
+  "origin": "composed"
+ },
+ {
+  "id": "psxnfk6",
+  "fen": "8/1pr1kppp/p3p3/PB6/3rP3/5PP1/P3N2P/4K2R b K - 0 25",
+  "lead": {
+   "fen": "8/1pr1kppp/p3p3/PB6/3rP3/5P2/P3N1PP/4K2R w K - 2 25",
+   "uci": "g2g3"
+  },
+  "solution": [
+   "a6b5",
+   "e2d4",
+   "c7c1",
+   "e1d2",
+   "c1h1"
+  ],
+  "themes": [
+   "hangingPiece",
+   "skewer"
+  ],
+  "primary": "skewer",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "pv5sv5h",
+  "fen": "3r2k1/3q1p1p/Q3p1p1/8/4P3/4BbP1/PR3P1P/6K1 b - - 2 31",
+  "lead": {
+   "fen": "3r2k1/3q1p1p/Q3p1p1/8/4P3/5bP1/PR1B1P1P/6K1 w - - 1 31",
+   "uci": "d2e3"
+  },
+  "solution": [
+   "d7d1",
+   "a6f1",
+   "d1f1",
+   "g1f1",
+   "d8d1"
+  ],
+  "themes": [
+   "mateIn3",
+   "mate"
+  ],
+  "primary": "mateIn3",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "px0kisn",
+  "fen": "8/4p1rk/5p1p/5P2/2Q2Q1p/7K/8/6q1 w - - 6 73",
+  "lead": {
+   "fen": "8/q3p1rk/5p1p/5P2/2Q2Q1p/7K/8/8 b - - 5 72",
+   "uci": "a7g1"
+  },
+  "solution": [
+   "f4h6",
+   "h7h6",
+   "c4h4"
+  ],
+  "themes": [
+   "sacrifice",
+   "mateIn2",
+   "mate"
+  ],
+  "primary": "mateIn2",
+  "level": 3,
+  "origin": "self-play"
+ },
+ {
+  "id": "pzrc607",
+  "fen": "8/8/2K5/P6p/5p1P/2k5/8/8 b - - 1 48",
+  "lead": {
+   "fen": "8/1K6/8/P6p/5p1P/2k5/8/8 w - - 0 48",
+   "uci": "b7c6"
+  },
+  "solution": [
+   "f4f3",
+   "a5a6",
+   "f3f2",
+   "a6a7",
+   "f2f1q"
+  ],
+  "themes": [
+   "promotion"
+  ],
+  "primary": "promotion",
+  "level": 3,
+  "origin": "self-play"
+ }
+]

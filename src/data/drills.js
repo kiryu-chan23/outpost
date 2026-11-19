@@ -1,0 +1,68 @@
+// Endgame drills played against the engine at full strength.
+// goal: 'mate' (deliver checkmate), 'promote' (make a queen and keep it),
+//       'hold' (reach a draw: capture the pawn, stalemate or a repeated position).
+// Every start position is checked by scripts/verify-content.mjs.
+export const DRILLS = [
+  {
+    id: 'kqk',
+    title: 'Queen mate',
+    level: 'Essential',
+    fen: '8/8/8/4k3/8/8/8/3QK3 w - - 0 1',
+    goal: 'mate',
+    limit: 30,
+    blurb: 'King and queen against a lone king. Mate in under 30 moves without stalemating.',
+    tips: ['Use the queen a knight’s jump away from the king to shrink its box.', 'Once the king is on the edge, stop and bring your own king over.', 'Before every queen move, check that the black king still has a legal move.'],
+  },
+  {
+    id: 'krk',
+    title: 'Rook mate',
+    level: 'Essential',
+    fen: '8/8/8/4k3/8/8/8/R3K3 w - - 0 1',
+    goal: 'mate',
+    limit: 40,
+    blurb: 'King and rook against a lone king — the box method.',
+    tips: ['Cut the king off with the rook, then bring your king up.', 'When the kings face each other, check from the side to push it back.', 'If the rook is attacked, move it far away along the same line.'],
+  },
+  {
+    id: 'two-rooks',
+    title: 'Two-rook ladder',
+    level: 'Warm-up',
+    fen: '8/8/8/4k3/8/8/8/RR2K3 w - - 0 1',
+    goal: 'mate',
+    limit: 15,
+    blurb: 'Two rooks take turns checking the king up the board. No king help needed.',
+    tips: ['One rook checks, the other guards the next rank.', 'If the king gets close to a rook, move that rook to the far side of the board.'],
+  },
+  {
+    id: 'kpk',
+    title: 'King and pawn: win it',
+    level: 'Essential',
+    fen: '8/8/4k3/8/3K4/8/4P3/8 w - - 0 1',
+    goal: 'promote',
+    limit: 30,
+    blurb: 'Use the opposition to escort the pawn home and keep the new queen.',
+    tips: ['First move: take the opposition (only one move wins).', 'Get your king in front of the pawn, not beside it.', 'Keep a spare pawn move in reserve to regain the opposition.'],
+  },
+  {
+    id: 'kpk-hold',
+    title: 'King and pawn: hold the draw',
+    level: 'Essential',
+    fen: '8/8/8/4k3/4P3/4K3/8/8 b - - 0 1',
+    orientation: 'black',
+    goal: 'hold',
+    limit: 40,
+    blurb: 'You defend. Keep your king in front of the pawn and take the opposition.',
+    tips: ['Stay on the file in front of the pawn when you can.', 'When White’s king steps forward, face it.', 'Once the pawn reaches the 7th with check, go to the corner in front of it.'],
+  },
+  {
+    id: 'lucena',
+    title: 'Lucena: build a bridge',
+    level: 'Advanced',
+    fen: '1K1k4/1P6/8/8/8/8/r7/2R5 w - - 0 1',
+    goal: 'promote',
+    limit: 30,
+    blurb: 'The most important winning rook ending. Shield your king from checks with your rook.',
+    tips: ['First check the black king one more file away.', 'Lift your rook to the fourth rank.', 'Walk the king out; when the checks come, block with the rook.'],
+  },
+];
+export const drillById = (id) => DRILLS.find((d) => d.id === id);
