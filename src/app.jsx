@@ -7,7 +7,9 @@ import { useStore, storageStatus, getState, update } from './lib/store.js';
 import { dueIds } from './lib/srs.js';
 import { useBatch } from './views/Review.jsx';
 import { loadLibrary } from './lib/puzzles.js';
-import { syncAccounts, autoSyncDue } from './lib/sync.js';
+import { syncAccounts, autoSyncDue, liveSyncDue } from './lib/sync.js';
+import { onAnalysedGame } from './lib/batch.js';
+import { debriefHook, pendingDebriefs } from './lib/debrief.js';
 import { syncToast } from './lib/synctoast.js';
 import { Home } from './views/Home.jsx';
 import { Play } from './views/Play.jsx';
@@ -89,6 +91,19 @@ function BatchPill({ onOpen, route }) {
   );
 }
 
+function DebriefPill({ route }) {
+  const debriefs = useStore((s) => s.debriefs);
+  const list = pendingDebriefs({ debriefs });
+  if (!list.length || route === 'review' || route === 'home') return null;
+  const d = list[0];
+  return (
+    <button type="button" class="batch-pill debrief-pill" onClick={() => go('review', { id: d.id, debrief: 1 })} data-testid="debrief-pill">
+      <i aria-hidden="true" />
+      Debrief ready · vs {d.opp}
+    </button>
+  );
+}
+
 function NavButton({ item, current, badge, onPick }) {
   return (
     <a class="nav-item" href={`#${item.id}`} aria-current={current === item.id ? 'page' : undefined} onClick={(e) => { e.preventDefault(); onPick(item.id); }}>
@@ -114,10 +129,20 @@ export function App() {
     seedRepertoire();
     loadLibrary().catch(() => {});
     // Pull new games from chess.com / Lichess shortly after opening, at most every few hours.
+    const due = () => autoSyncDue(getState()) || liveSyncDue(getState());
     const t = setTimeout(() => {
-      if (autoSyncDue(getState())) syncAccounts({ quiet: true }).then(syncToast).catch(() => {});
+      if (due()) syncAccounts({ quiet: true }).then(syncToast).catch(() => {});
     }, 1500);
-    return () => clearTimeout(t);
+    // While open, keep watching for finished games so each one gets a debrief soon after.
+    const iv = setInterval(() => {
+      if (liveSyncDue(getState())) syncAccounts({ quiet: true }).then(syncToast).catch(() => {});
+    }, 60 * 1000);
+    const off = onAnalysedGame((g) => debriefHook(g));
+    return () => {
+      clearTimeout(t);
+      clearInterval(iv);
+      off();
+    };
   }, []);
   useEffect(() => {
     document.title = `${NAV.find((n) => n.id === nav.route)?.label || 'Home'} · Outpost`;
@@ -166,6 +191,7 @@ export function App() {
         </div>
       ) : null}
       <BatchPill onOpen={() => pick('review')} route={nav.route} />
+      <DebriefPill route={nav.route} />
       <Toasts />
     </div>
   );

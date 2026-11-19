@@ -466,3 +466,32 @@ details.table-view summary { cursor: pointer; color: var(--ink-2); font-size: 13
 .list .row > .list-row { min-width: 0; }
 .list-row > .grow { min-width: 0; overflow-wrap: anywhere; }
 @media (max-width: 480px) { .list-row { flex-wrap: wrap; } }
+.debrief-pill { bottom: 68px; border-color: var(--coral); }
+.debrief-pill i { background: var(--coral); animation: none; }
+@media (max-width: 860px) { .debrief-pill { bottom: calc(var(--tabbar) + 62px); } }
+.coach-verdict { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 14px; margin: 0; }
+.coach-verdict .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--ink-3); }
+.coach-verdict .dot.good { background: var(--turq); }
+.coach-verdict .dot.warn { background: var(--amber); }
+.coach-verdict .dot.bad { background: var(--coral); }
+
+/* ---- goals & trends ---- */
+.goal-head { display: grid; grid-template-columns: 1fr minmax(160px, 240px); gap: 16px; align-items: center; }
+.goal-metric { font-weight: 600; color: var(--ink-2); font-size: 14px; }
+.goal-value strong { font: 600 30px/1.1 var(--font-display); color: var(--ink); }
+.goal-value { margin: 4px 0; }
+.goal-mini { padding: 12px 14px; border-radius: var(--radius-sm); border: 1px solid var(--line); background: var(--bg-3); }
+.goal-mini p { margin: 4px 0 0; font-size: 14px; }
+.spark { display: block; overflow: visible; }
+.spark-line { fill: none; stroke: var(--turq); stroke-width: 2.2; stroke-linejoin: round; stroke-linecap: round; }
+.spark-goal { stroke: var(--amber); stroke-width: 1.5; stroke-dasharray: 4 4; }
+.spark-dot { fill: var(--ink); }
+.spark-dot.good { fill: var(--turq); }
+.spark-dot.bad { fill: var(--coral); }
+.spark-empty { padding: 14px 0; }
+.trend-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
+.trend { display: grid; gap: 4px; padding: 10px 12px; border-radius: var(--radius-sm); background: var(--bg-3); border: 1px solid var(--line); }
+.trend-better { color: var(--turq); }
+.trend-worse { color: var(--coral); }
+.trend-flat { color: var(--ink-3); }
+@media (max-width: 600px) { .goal-head { grid-template-columns: 1fr; } }

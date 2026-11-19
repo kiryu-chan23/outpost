@@ -7,6 +7,8 @@ import { dueIds, DAY } from './srs.js';
 import { THEMES } from '../data/themes.js';
 import { LESSONS } from '../data/lessons.js';
 import { nextStep, stepRoute } from './path.js';
+import { pendingDebriefs } from './debrief.js';
+import { replayCache } from './analysis.js';
 import { wonPositions, fmtAdv } from './convert.js';
 import { scanSummary } from './blundercheck.js';
 export { timeTrouble } from './clock.js';
@@ -154,6 +156,25 @@ export function nextActions(state, games) {
   const cur = state.current;
   if (cur && cur.status === 'playing') {
     out.push({ id: 'resume', title: 'Resume your game', text: `You’re ${Math.ceil(cur.moves.length / 2)} moves into a game against level ${cur.level}.`, cta: 'Resume game', route: 'play' });
+  }
+  const deb = pendingDebriefs(state)[0];
+  const debGame = deb ? games.find((g) => g.id === deb.id) : null;
+  if (deb && debGame) {
+    const mins = Math.max(1, Math.round((Date.now() - deb.created) / 60000));
+    const when = mins < 60 ? `${mins} min ago` : mins < 1440 ? `${Math.round(mins / 60)} hour${Math.round(mins / 60) === 1 ? '' : 's'} ago` : 'yesterday';
+    const fens = replayCache(debGame).fens;
+    out.push({
+      id: 'debrief',
+      title: `Debrief: your game vs ${deb.opp}`,
+      text: `Played ${when}. ${deb.headline}. Fix ${deb.steps === 1 ? 'it' : `the ${deb.steps} moments that mattered`} while the game is fresh — about a minute.`,
+      cta: 'Fix it now',
+      route: 'review',
+      params: { id: deb.id, debrief: 1 },
+      gameId: deb.id,
+      fen: deb.top ? fens[deb.top.ply] : undefined,
+      orientation: debGame.userColor === 'b' ? 'black' : 'white',
+      caption: deb.top ? `Your move ${Math.floor(deb.top.ply / 2) + 1} vs ${deb.opp} — what's better here?` : undefined,
+    });
   }
   const recent = games.find((g) => g.source === 'play' || g.source === 'import');
   if (recent && !recent.analysis && Date.now() - recent.created < 14 * DAY) {

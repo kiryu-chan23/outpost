@@ -1,5 +1,6 @@
 // Insights: recurring mistakes, puzzle accuracy by theme, performance by
 // opening and training activity — all from saved activity, each with a next step.
+import { GoalCard, TrendsPanel } from '../components/Goals.jsx';
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { Icon } from '../components/Icon.jsx';
 import { useStore, listGames, gamesVersion } from '../lib/store.js';
@@ -179,6 +180,13 @@ export function Insights() {
           <div class="s">{trend.length ? `over ${trend.length} reviewed game${trend.length === 1 ? '' : 's'}` : 'review a game to see this'}</div>
         </div>
       </div>
+
+      {mistakes.reviewed ? (
+        <div class="grid-2" style={{ alignItems: 'start', marginBottom: '18px' }}>
+          <GoalCard />
+          <TrendsPanel />
+        </div>
+      ) : null}
 
       <div class="grid-2" style={{ alignItems: 'start' }}>
         <section class="panel pad" aria-labelledby="h-mistakes">

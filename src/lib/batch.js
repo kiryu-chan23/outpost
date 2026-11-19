@@ -4,9 +4,15 @@
 import { analyseGame, REVIEW_DEPTH } from './analysis.js';
 import { getGame, saveGame, listGames, logActivity } from './store.js';
 
-export const batch = { running: false, ids: [], done: 0, failed: 0, current: null, currentPly: 0, currentPlies: 0, startedAt: 0, finishedAt: 0, lastError: null };
+export const batch = { running: false, index: -1, ids: [], done: 0, failed: 0, current: null, currentPly: 0, currentPlies: 0, startedAt: 0, finishedAt: 0, lastError: null };
 const listeners = new Set();
+const analysedHooks = new Set();
 let ac = null;
+/** Run `fn(game)` whenever the batch finishes analysing a game. */
+export function onAnalysedGame(fn) {
+  analysedHooks.add(fn);
+  return () => analysedHooks.delete(fn);
+}
 const emit = () => listeners.forEach((l) => l());
 export function onBatch(fn) {
   listeners.add(fn);
@@ -16,10 +22,12 @@ export function onBatch(fn) {
 export const unreviewed = () => listGames().filter((g) => !g.analysis && g.moves.length >= 2);
 
 /** Analyse the given game ids (default: every unreviewed game, newest first). */
-export async function startBatch(ids = unreviewed().map((g) => g.id), { depth = 'quick' } = {}) {
+export async function startBatch(ids = unreviewed().map((g) => g.id), { depth = 'quick', front = false } = {}) {
   if (batch.running) {
-    // Add to the running queue instead of starting a second one.
-    for (const id of ids) if (!batch.ids.includes(id)) batch.ids.push(id);
+    // Add to the running queue instead of starting a second one; `front` puts them next in line.
+    const add = ids.filter((id) => !batch.ids.slice(batch.index + 1).includes(id) && !batch.ids.slice(0, batch.index + 1).includes(id));
+    if (front) batch.ids.splice(batch.index + 1, 0, ...add);
+    else batch.ids.push(...add);
     emit();
     return;
   }
@@ -28,6 +36,7 @@ export async function startBatch(ids = unreviewed().map((g) => g.id), { depth = 
   Object.assign(batch, { running: true, ids: ids.slice(), done: 0, failed: 0, current: null, startedAt: Date.now(), finishedAt: 0, lastError: null });
   emit();
   for (let i = 0; i < batch.ids.length; i++) {
+    batch.index = i;
     if (ac.signal.aborted) break;
     const g = getGame(batch.ids[i]);
     if (!g || g.analysis) {
@@ -51,7 +60,17 @@ export async function startBatch(ids = unreviewed().map((g) => g.id), { depth = 
       if (ac.signal.aborted || !report) break;
       // Re-read in case the game changed (e.g. was opened and analysed meanwhile).
       const fresh = getGame(g.id);
-      if (fresh && !fresh.analysis) saveGame({ ...fresh, analysis: report });
+      if (fresh && !fresh.analysis) {
+        const saved = { ...fresh, analysis: report };
+        saveGame(saved);
+        for (const fn of analysedHooks) {
+          try {
+            fn(saved);
+          } catch {
+            /* hooks are best-effort */
+          }
+        }
+      }
       batch.done++;
     } catch (e) {
       if (ac.signal.aborted) break;

@@ -15,7 +15,7 @@ import { guideSteps, punishments, lessonsOf, threatBefore } from '../lib/guide.j
 import { ACADEMY_ID } from '../lib/insights.js';
 import { themeLabel } from '../data/themes.js';
 import { Workspace, Dialog, Note, Line, Seg, EngineGate, toast, fmtDateTime, fmtDate } from '../components/ui.jsx';
-import { useStore, update, getGame, saveGame, deleteGame, listGames, newId, logActivity, storageStatus } from '../lib/store.js';
+import { useStore, update, getState, getGame, saveGame, deleteGame, listGames, newId, logActivity, storageStatus } from '../lib/store.js';
 import { batch, onBatch, startBatch, cancelBatch, unreviewed } from '../lib/batch.js';
 import { parsePgn, buildPgn, replay, sideName, cgColor, opp, playUci } from '../lib/chessx.js';
 import { analyseGame, judgeAttempt, REVIEW_DEPTH, CLASS_LABEL, CLASS_MARK, keyMoments } from '../lib/analysis.js';
@@ -28,6 +28,28 @@ import { go } from '../lib/router.js';
 import { dedupe, saveImported } from '../lib/gameimport.js';
 import { syncAccounts } from '../lib/sync.js';
 import { syncToast } from '../lib/synctoast.js';
+import { finishDebrief, QUICK } from '../lib/debrief.js';
+import { gameMetrics, reviewedSeries, trend, currentGoal, METRICS, fmt } from '../lib/goals.js';
+
+/** After a debrief: this game's number for your goal next to your recent average. */
+function DebriefResult({ game }) {
+  const all = listGames();
+  const goal = currentGoal(useStore((s) => s), all);
+  const m = gameMetrics(game);
+  if (!m) return null;
+  const tr = trend(reviewedSeries(all), goal.metric);
+  const meta = METRICS[goal.metric];
+  const v = m[goal.metric];
+  const ok = meta.lower ? v <= goal.target : v >= goal.target;
+  return (
+    <div class="goal-mini" data-testid="debrief-goal">
+      <span class="eyebrow">Your goal · {meta.label.toLowerCase()}</span>
+      <p>
+        This game: <strong style={{ color: ok ? 'var(--turq)' : 'var(--coral)' }}>{meta.unit === '%' ? `${v}%` : v}</strong> · last 10 games {fmt(goal.metric, tr.last10)} · goal {meta.lower ? '≤' : '≥'} {fmt(goal.metric, goal.target)}
+      </p>
+    </div>
+  );
+}
 
 function useEngineStatus() {
   const [, setN] = useState(0);
@@ -397,7 +419,7 @@ const ArrowKey = ({ threat }) => (
   </p>
 );
 
-function GameReview({ id, startPly, startRetry, onBack }) {
+function GameReview({ id, startPly, startRetry, startDebrief, onBack }) {
   const settings = useStore((s) => s.settings);
   const customs = useStore((s) => s.customPuzzles);
   const status = useEngineStatus();
@@ -417,7 +439,11 @@ function GameReview({ id, startPly, startRetry, onBack }) {
   const [threats, setThreats] = useState({}); // ply -> threat before that move | false | 'loading'
   const abortRef = useRef(null);
   const an = game.analysis;
-  const steps = useMemo(() => (an ? guideSteps(game) : []), [an]);
+  const [quick, setQuick] = useState(!!startDebrief); // debrief: just the moments that mattered most
+  const steps = useMemo(() => (an ? guideSteps(game, quick ? QUICK : 5) : []), [an, quick]);
+  const fullSteps = useMemo(() => (an ? guideSteps(game, 5).length : 0), [an]);
+  const autoRef = useRef(false);
+  const debriefRef = useRef(false);
   const punish = useMemo(() => (an ? punishments(game) : null), [an]);
   const guideStep = guide && guide.i < steps.length ? steps[guide.i] : null;
 
@@ -532,6 +558,25 @@ function GameReview({ id, startPly, startRetry, onBack }) {
     setFlash({ kind: v && v.ok ? 'good' : 'bad', key: Date.now() });
     setGuide((g) => (g && g.i === i ? { ...g, phase: 'explain', verdict: v ? { ok: v.ok, exact: v.exact, san: m.san, after: v.after } : { ok: false, unknown: true, san: m.san }, tryFen: null } : g));
   };
+  // A debrief starts by itself once the analysis is there.
+  useEffect(() => {
+    if (!startDebrief || !an || autoRef.current) return;
+    autoRef.current = true;
+    if (steps.length) startGuide();
+    else finishDebrief(game.id, 0, 0);
+  }, [an, steps.length]);
+  useEffect(() => {
+    if (!guide || guide.phase !== 'done' || debriefRef.current) return;
+    const pending = (getState().debriefs || {})[game.id];
+    if (!quick && !(pending && !pending.done)) return;
+    debriefRef.current = true;
+    finishDebrief(game.id, guide.results.filter(Boolean).length, steps.length);
+  }, [guide && guide.phase]);
+  const fullGuide = () => {
+    setQuick(false);
+    setGuide({ i: 0, phase: 'ask', verdict: null, tryFen: null, tryMove: null, results: [] });
+  };
+
   const guideNext = () =>
     setGuide((g) => ({ ...g, i: g.i + 1, phase: g.i + 1 < steps.length ? 'ask' : 'done', results: [...g.results, !!(g.verdict && g.verdict.ok)], verdict: null, tryFen: null }));
 
@@ -661,7 +706,8 @@ function GameReview({ id, startPly, startRetry, onBack }) {
       const lessons = lessonsOf(game);
       coach = (
         <div class="stack" data-testid="guide-done">
-          <Note kind={found === n ? 'good' : 'info'} title={`Guided review done — you found ${found} of ${n}`} pop>
+          {quick ? <DebriefResult game={game} found={found} n={n} /> : null}
+          <Note kind={found === n ? 'good' : 'info'} title={quick ? `Debrief done — you found ${found} of ${n}` : `Guided review done — you found ${found} of ${n}`} pop>
             <p>{found === n ? 'You found the better move every time. The problem in this game was seeing it at the board — blunder check helps with that.' : 'Save the moments you missed for practice; they come back in Tactics until they stick.'}</p>
           </Note>
           {punish && punish.chances ? (
@@ -687,8 +733,14 @@ function GameReview({ id, startPly, startRetry, onBack }) {
             </div>
           ) : null}
           <div class="btn-row">
+            {quick && fullSteps > n ? (
+              <button type="button" class="btn primary" onClick={fullGuide} data-testid="debrief-full">
+                Full guided review ({fullSteps} moments)
+              </button>
+            ) : null}
             <button type="button" class="btn" onClick={startGuide}><Icon name="retry" /> Go through it again</button>
             <button type="button" class="btn ghost" onClick={() => { setGuide(null); setPly(0); }}>Back to the review</button>
+            {quick ? <button type="button" class="btn ghost" onClick={() => go('home')}>Home</button> : null}
           </div>
         </div>
       );
@@ -703,7 +755,7 @@ function GameReview({ id, startPly, startRetry, onBack }) {
       coach = (
         <div class="stack" data-testid="guide-panel">
           <div class="row between">
-            <span class="eyebrow">Guided review · moment {guide.i + 1} of {n}</span>
+            <span class="eyebrow">{quick ? 'Debrief' : 'Guided review'} · moment {guide.i + 1} of {n}</span>
             <span class={`chip ${st.kind === 'punish' ? 'amber' : 'coral'}`}>{st.kind === 'punish' ? 'Missed chance' : CLASS_LABEL[st.cls] || 'Mistake'}</span>
           </div>
           {guide.phase === 'ask' || guide.phase === 'checking' ? (
@@ -1070,5 +1122,5 @@ export function Review({ params }) {
     go('review', { id: gid });
   };
   if (!game) return <Library onOpen={open} />;
-  return <GameReview key={`${game.id}:${params?.ply ?? ''}:${params?.retry ? 'r' : ''}`} id={game.id} startPly={params?.ply} startRetry={params?.retry} onBack={() => { update((s) => (s.ui.reviewId = null), { immediate: true }); go('review'); }} />;
+  return <GameReview key={`${game.id}:${params?.ply ?? ''}:${params?.retry ? 'r' : ''}:${params?.debrief ? 'd' : ''}`} id={game.id} startPly={params?.ply} startRetry={params?.retry} startDebrief={!!params?.debrief} onBack={() => { update((s) => (s.ui.reviewId = null), { immediate: true }); go('review'); }} />;
 }

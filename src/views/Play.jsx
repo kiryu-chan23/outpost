@@ -17,6 +17,7 @@ import { flipScore } from '../lib/uci.js';
 import { nameOpening } from '../data/openings.js';
 import { saveTextFile, copyText } from '../lib/files.js';
 import { go } from '../lib/router.js';
+import { preMoveWarning, verdictFor, adjustWheels, WHEELS, CLEAN_GAMES } from '../lib/coach.js';
 
 export const TIME_CONTROLS = [
   { value: 'none', label: 'No clock' },
@@ -110,9 +111,22 @@ function finishGame(cur, result, termination) {
     timeControl: parseTc(cur.timeControl) ? { base: parseTc(cur.timeControl).base / 1000, inc: parseTc(cur.timeControl).inc / 1000 } : null,
     clocks: cur.clocks && cur.clocks.length === cur.moves.length ? cur.clocks.slice() : null,
     checks: cur.blunderCheck ? (cur.checks || []).slice() : null,
+    coach: cur.coach ? { ...(cur.coachLog || { warned: 0, ignored: 0, heeded: 0 }), tally: cur.coachTally || {} } : null,
     opening: nameOpening(cur.moves, cur.startFen).name,
     analysis: null,
   };
+  if (cur.coach && game.moves.length >= 2 && (getState().settings.wheels?.level ?? 3) > 0) {
+    const myMoves = cur.moves.filter((_, i) => (i % 2 === 0) === (new Chess(cur.startFen || START_FEN).turn() === cur.userColor)).length;
+    let change = 0;
+    update((s) => {
+      const res = adjustWheels(s.settings.wheels, { at: Date.now(), moves: myMoves, warned: (cur.coachLog || {}).warned || 0, ignored: (cur.coachLog || {}).ignored || 0 });
+      s.settings.wheels = res.wheels;
+      change = res.change;
+    });
+    const lv = WHEELS[getState().settings.wheels.level];
+    if (change < 0) toast(lv.level ? `${CLEAN_GAMES} clean games in a row — training wheels down to “${lv.label}”` : `${CLEAN_GAMES} clean games in a row — training wheels off. The coach now only reviews after you move.`);
+    if (change > 0) toast(`A lot of warnings that game — training wheels back up to “${lv.label}”`);
+  }
   if (game.moves.length >= 2) {
     saveGame(game);
     logActivity('game', `${result === '1/2-1/2' ? 'Drew' : (result === '1-0') === (cur.userColor === 'w') ? 'Won' : 'Lost'} vs level ${lvl.id}`, game.id);
@@ -125,6 +139,34 @@ function finishGame(cur, result, termination) {
       s.current.saved = game.moves.length >= 2;
     }
   }, { immediate: true });
+}
+
+/** Training wheels: how much the live coach warns before you move. */
+function WheelsControl() {
+  const wheels = useStore((s) => s.settings.wheels || { level: 3, games: [] });
+  const lv = WHEELS[wheels.level] || WHEELS[3];
+  const clean = (() => {
+    let n = 0;
+    for (const g of (wheels.games || []).slice().reverse()) {
+      if (g.warned <= 1 && g.moves >= 15) n++;
+      else break;
+    }
+    return n;
+  })();
+  return (
+    <div class="stack tight" data-testid="wheels">
+      <Seg
+        label="Warnings before you move"
+        value={String(wheels.level)}
+        onChange={(v) => update((s) => (s.settings.wheels = { level: +v, games: [] }))}
+        options={WHEELS.map((w) => ({ value: String(w.level), label: w.label }))}
+      />
+      <p class="small muted">
+        {lv.hint}
+        {wheels.level > 0 ? ` Clean coached games in a row: ${clean} of ${CLEAN_GAMES} — then it steps down a level.` : ''}
+      </p>
+    </div>
+  );
 }
 
 function useEngineStatus() {
@@ -174,9 +216,10 @@ function Setup({ initialFen }) {
         <span class="label">Clock</span>
         <Seg label="Clock" value={tc} onChange={setTc} options={TIME_CONTROLS} />
       </div>
-      <Switch checked={coach} onChange={setCoach} hint="Hints on request, and a warning when a move drops material.">
-        Coach hints
+      <Switch checked={coach} onChange={setCoach} hint="A verdict on every move, hints on request, and a warning before you drop a piece or allow mate. The warnings fade as your games get cleaner.">
+        Live coach
       </Switch>
+      {coach ? <WheelsControl /> : null}
       <Switch checked={blunderCheck} onChange={setBlunderCheck} hint="Before each move, tap your pieces that are in danger (or press All safe). Builds the habit that stops one-move blunders.">
         Blunder check
       </Switch>
@@ -223,6 +266,9 @@ function Game({ cur }) {
   const [viewPly, setViewPly] = useState(null); // null = live position
   const [thinking, setThinking] = useState(false);
   const [coachNote, setCoachNote] = useState(null);
+  const [warn, setWarn] = useState(null); // pre-move warning: { text, move, key, san }
+  const [verdict, setVerdict] = useState(null); // { san, label, kind, key }
+  const confirmRef = useRef(null);
   const [hint, setHint] = useState(null); // { level, uci }
   const [confirm, setConfirm] = useState(null);
   const [tab, setTab] = useState('game');
@@ -328,12 +374,33 @@ function Game({ cur }) {
   };
 
   // -- the user moves
+  const bumpCoach = (field) =>
+    update((s) => {
+      if (!s.current) return;
+      const c = s.current.coachLog || { warned: 0, ignored: 0, heeded: 0 };
+      s.current.coachLog = { ...c, [field]: (c[field] || 0) + 1 };
+    });
   const onUserMove = (move) => {
     if (!usersTurn || viewPly != null) {
       setRev((n) => n + 1);
       return;
     }
     const fenBefore = liveFen;
+    // Training wheels: stop and ask before a move that drops material or allows mate.
+    const wheel = cur.coach ? settings.wheels?.level ?? 3 : 0;
+    const key = `${total}:${move.from}${move.to}${move.promotion || ''}`;
+    if (wheel > 0 && confirmRef.current !== key) {
+      const w = preMoveWarning(fenBefore, move, cur.userColor, wheel);
+      if (w) {
+        setWarn({ ...w, move, key, at: Date.now() });
+        setCoachNote(null);
+        setRev((n) => n + 1);
+        bumpCoach('warned');
+        return;
+      }
+    }
+    confirmRef.current = null;
+    setWarn(null);
     if (cur.blunderCheck) {
       // Record whether this move leaves something hanging before the game can end and be saved.
       const t = new Chess(fenBefore);
@@ -420,6 +487,13 @@ function Game({ cur }) {
       const loss = Math.max(0, color === 'w' ? whiteWin(before) - whiteWin(after) : whiteWin(after) - whiteWin(before));
       const pov = (ev) => (color === 'w' ? { cp: ev.cp, mate: ev.mate, pv: ev.pv } : { ...flipScore(ev), pv: ev.pv });
       const uci = m.from + m.to + (m.promotion || '');
+      const vd = verdictFor(loss, before.best === uci);
+      setVerdict({ ...vd, san: m.san, at: Date.now() });
+      update((st) => {
+        if (!st.current || st.current.id !== cur.id) return;
+        const t = st.current.coachTally || {};
+        st.current.coachTally = { ...t, [vd.key]: (t[vd.key] || 0) + 1 };
+      });
       if (loss >= 18) {
         const ex = explainMove({ fenBefore, fenAfter, played: { ...m, uci }, before: pov(before), after: pov(after), voice: 'you' });
         setCoachNote({ kind: loss >= 30 ? 'bad' : 'warn', title: loss >= 30 ? `${m.san} is a blunder` : `${m.san} is a mistake`, text: ex.text || 'This gives away a lot of your winning chances.', takeback: true, key: Date.now() });
@@ -583,6 +657,33 @@ function Game({ cur }) {
           </button>
         </Note>
       ) : null}
+      {warn && playing && usersTurn ? (
+        <div data-testid="coach-warn">
+          <Note kind="warn" title={`Wait — before you play ${warn.san}`} pop key={warn.at}>
+            <p>{warn.text}</p>
+            <div class="btn-row" style={{ marginTop: '10px' }}>
+              <button type="button" class="btn sm primary" onClick={() => { setWarn(null); bumpCoach('heeded'); }} data-testid="warn-other" autoFocus>
+                Choose another move
+              </button>
+              <button type="button" class="btn sm ghost" onClick={() => { const mv = warn.move; confirmRef.current = warn.key; bumpCoach('ignored'); setWarn(null); onUserMove(mv); }} data-testid="warn-play">
+                Play {warn.san} anyway
+              </button>
+            </div>
+          </Note>
+        </div>
+      ) : null}
+      {cur.coach && verdict && playing ? (
+        <p class="coach-verdict" data-testid="coach-verdict">
+          <span class={`dot ${verdict.kind}`} aria-hidden="true" />
+          Your last move <strong>{verdict.san}</strong>: {verdict.label}
+          {(() => {
+            const t = cur.coachTally || {};
+            const good = (t.best || 0) + (t.good || 0);
+            const parts = [`${good} good`, t.inaccuracy ? `${t.inaccuracy} inaccurac${t.inaccuracy === 1 ? 'y' : 'ies'}` : null, t.mistake ? `${t.mistake} mistake${t.mistake === 1 ? '' : 's'}` : null, t.blunder ? `${t.blunder} blunder${t.blunder === 1 ? '' : 's'}` : null].filter(Boolean);
+            return <span class="muted"> · this game: {parts.join(', ')}</span>;
+          })()}
+        </p>
+      ) : null}
       {coachNote ? (
         <Note kind={coachNote.kind} title={coachNote.title} pop key={coachNote.key}>
           <p>{coachNote.text}</p>
@@ -664,9 +765,10 @@ function Game({ cur }) {
       </div>
       {playing ? (
         <>
-        <Switch checked={cur.coach} onChange={(v) => update((s) => { s.current.coach = v; s.settings.coach = v; })} hint="Hints on request and blunder warnings.">
-          Coach hints
+        <Switch checked={cur.coach} onChange={(v) => update((s) => { s.current.coach = v; s.settings.coach = v; })} hint="A verdict on every move, hints on request, and warnings before blunders.">
+          Live coach
         </Switch>
+        {cur.coach ? <WheelsControl /> : null}
         <Switch checked={!!cur.blunderCheck} onChange={(v) => update((s) => { s.current.blunderCheck = v; s.current.checks = s.current.checks || []; s.settings.blunderCheck = v; })} hint="Mark what’s in danger before each move.">
           Blunder check
         </Switch>

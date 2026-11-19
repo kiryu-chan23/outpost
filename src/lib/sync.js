@@ -20,6 +20,7 @@ const FIRST_LICHESS = 200; // most recent games on the first sync
 const FIRST_MONTHS = 3; // chess.com months on the first sync
 const OVERLAP = 36 * 3600 * 1000; // re-ask a little before the last sync; duplicates are dropped
 export const AUTO_EVERY = 3 * 3600 * 1000;
+export const LIVE_EVERY = 4 * 60 * 1000; // while the app is open with live watching on
 
 export const lichessUrl = (user, since) =>
   `https://lichess.org/api/games/user/${encodeURIComponent(user)}?clocks=true&opening=true&evals=false&literate=false${since ? `&since=${Math.max(0, since)}` : `&max=${FIRST_LICHESS}`}`;
@@ -71,7 +72,35 @@ export async function fetchLichess(user, since, { signal, fetchImpl = fetch } = 
   return res.text();
 }
 
+/** Months from `since` to `now` (UTC), when that's at most two — no need to ask for the archive list. */
+export function recentMonths(since, now = Date.now()) {
+  if (!since) return null;
+  const a = new Date(since);
+  const b = new Date(now);
+  const from = a.getUTCFullYear() * 12 + a.getUTCMonth();
+  const to = b.getUTCFullYear() * 12 + b.getUTCMonth();
+  if (to - from > 1 || to < from) return null;
+  const out = [];
+  for (let k = from; k <= to; k++) out.push([Math.floor(k / 12), (k % 12) + 1]);
+  return out;
+}
+
 export async function fetchChessCom(user, since, { signal, fetchImpl = fetch, now = Date.now() } = {}) {
+  const direct = recentMonths(since, now);
+  if (direct) {
+    // Frequent checks: just this month (and last), and a month with no games yet is simply empty.
+    const texts = [];
+    for (const [y, m] of direct) {
+      try {
+        const r = await get(chessComMonthPgnUrl(user, y, m), { signal, fetchImpl });
+        texts.push(await r.text());
+      } catch (err) {
+        if (err && err.kind === 'notfound') continue;
+        throw err;
+      }
+    }
+    return texts.join('\n\n');
+  }
   const res = await get(chessComArchivesUrl(user), { signal, fetchImpl });
   const { archives = [] } = await res.json();
   const months = monthsToFetch(archives, since, now);
@@ -142,7 +171,7 @@ export async function syncAccounts({ signal, fetchImpl = typeof fetch !== 'undef
     const added = ids.length;
     if (added) logActivity('import', `Synced ${added} new game${added === 1 ? '' : 's'} from ${results.filter((r) => r.added).map((r) => SITES[r.site].name).join(' and ')}`, ids[ids.length - 1]);
     const doAnalyse = analyse ?? getState().settings.sync?.analyse ?? true;
-    if (added && doAnalyse) startBatch(ids.slice().reverse());
+    if (added && doAnalyse) startBatch(ids.slice().reverse(), { front: true }); // newest first, ahead of any backlog
     return { results, ids, quiet, analysing: !!(added && doAnalyse) };
   })();
   try {
@@ -160,6 +189,16 @@ export function autoSyncDue(state, now = Date.now()) {
   // Once a sync has been blocked here, don't retry on every open; the Data page offers download links.
   if (log.blocked) return now - (log.lastAttempt || 0) > 24 * AUTO_EVERY;
   return now - (log.lastAttempt || 0) > AUTO_EVERY;
+}
+
+/** While the app is open: check every few minutes so a finished game gets its debrief quickly. */
+export function liveSyncDue(state, now = Date.now()) {
+  const a = state.settings.accounts || {};
+  const sy = state.settings.sync || {};
+  if (!sy.auto || sy.live === false || !(a.lichess || a.chesscom)) return false;
+  const log = state.syncLog || {};
+  if (log.blocked) return false;
+  return now - (log.lastAttempt || 0) > LIVE_EVERY;
 }
 
 /** Plain download links for when the page can't fetch: since the last good sync, or recent. */

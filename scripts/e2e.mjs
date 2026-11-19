@@ -97,7 +97,7 @@ await page.waitForTimeout(600);
 ok('home renders one primary next action', (await page.locator('[data-testid=next-action]').count()) === 1, await page.locator('#hero-title').innerText());
 
 // ---- rules through the real board (Play → Start from a FEN) ----------------------------
-async function fenGame(f) {
+async function fenGame(f, { coach } = {}) {
   await go('play');
   if (await page.getByRole('button', { name: 'Stop and set up a new game' }).count()) {
     await clickText('Stop and set up a new game');
@@ -108,6 +108,10 @@ async function fenGame(f) {
   const fenSwitch = page.locator('label.switch', { hasText: 'Start from a FEN' }).locator('input');
   if (!(await fenSwitch.isChecked())) await page.locator('label.switch', { hasText: 'Start from a FEN' }).click();
   await page.fill('#fen-input', f);
+  if (coach !== undefined) {
+    const sw = page.locator('label.switch', { hasText: 'Live coach' });
+    if ((await sw.locator('input').isChecked()) !== coach) await sw.click();
+  }
   await page.click('[data-testid=start-game]');
   await page.waitForTimeout(300);
 }
@@ -136,11 +140,41 @@ await page.waitForTimeout(500);
 ok('checkmate ends the game', (await page.locator('.note', { hasText: 'You won' }).count()) > 0, await page.locator('.note h4').first().innerText().catch(() => ''));
 await shot('checkmate');
 
+// ---- live coach: warning before a blunder, verdict after each move ----------------------------------
+await fenGame('r1bqkbnr/pppp1ppp/2n5/4p2Q/4P3/8/PPPP1PPP/RNB1KBNR w KQkq - 2 3', { coach: true });
+const coachFen = await fen();
+await tap('h5', 'e5'); // Qxe5+?? drops the queen to Nxe5
+await page.waitForTimeout(300);
+ok('live coach stops a move that hangs the queen, before it is played', (await page.locator('[data-testid=coach-warn]').count()) === 1 && (await fen()) === coachFen);
+ok('the warning says what would be lost', /queen you just moved/.test(await page.innerText('[data-testid=coach-warn]')));
+await shot('coach-warn');
+await page.click('[data-testid=warn-other]');
+await page.waitForTimeout(150);
+ok('“Choose another move” keeps the position', (await page.locator('[data-testid=coach-warn]').count()) === 0 && (await fen()) === coachFen);
+await tap('h5', 'e5');
+await page.waitForTimeout(250);
+await page.click('[data-testid=warn-play]');
+await page.waitForTimeout(300);
+ok('“Play it anyway” plays the move', (await fen()) !== coachFen);
+await page.waitForSelector('[data-testid=coach-verdict]', { timeout: 20000 }).catch(() => {});
+ok('every move gets a verdict', /Blunder|Mistake/.test(await page.locator('[data-testid=coach-verdict]').innerText().catch(() => '')));
+await page.getByRole('tab', { name: /Options|Settings|Game options/i }).first().click().catch(() => {});
+ok('training-wheels control is in the game options', (await page.locator('[data-testid=wheels]').count()) >= 1);
+await fenGame('r1bqkbnr/pppp1ppp/2n5/4p2Q/4P3/8/PPPP1PPP/RNB1KBNR w KQkq - 2 3', { coach: false });
+await tap('h5', 'e5');
+await page.waitForTimeout(300);
+ok('with the coach off, no warning', (await page.locator('[data-testid=coach-warn]').count()) === 0 && (await fen()) !== coachFen);
+
 // ---- play a game vs the computer, resign, review -----------------------------------------
 await go('play');
-await clickText('New game');
+if (await page.getByRole('button', { name: 'Stop and set up a new game' }).count()) {
+  await clickText('Stop and set up a new game');
+  await clickText('Stop game', { exact: true });
+}
+if (await page.getByRole('button', { name: 'New game' }).count()) await clickText('New game');
 if (await page.locator('label.switch', { hasText: 'Start from a FEN' }).locator('input').isChecked()) await page.locator('label.switch', { hasText: 'Start from a FEN' }).click();
 await page.getByRole('radio', { name: '10 min' }).click();
+if (!(await page.locator('label.switch', { hasText: 'Live coach' }).locator('input').isChecked())) await page.locator('label.switch', { hasText: 'Live coach' }).click();
 await page.click('[data-testid=start-game]');
 await page.waitForTimeout(400);
 ok('clock is shown', (await page.locator('.clock').count()) === 2);
@@ -512,6 +546,60 @@ await page.waitForTimeout(300);
 ok('Review shows the synced accounts with a Sync button', (await page.locator('[data-testid=review-sync]').count()) === 1);
 const syncedRow = page.locator('.list li', { hasText: 'Rival' }).first();
 ok('synced games appear in the library with my side set', (await syncedRow.count()) === 1);
+
+// ---- debrief right after a synced game, then goals ----------------------------------------------
+{
+  const t = new Date(Date.now() - 10 * 60000);
+  const pad = (n) => String(n).padStart(2, '0');
+  const ud = `${t.getUTCFullYear()}.${pad(t.getUTCMonth() + 1)}.${pad(t.getUTCDate())}`;
+  const ut = `${pad(t.getUTCHours())}:${pad(t.getUTCMinutes())}:00`;
+  const fresh = `[Event "Rated Blitz game"]\n[Site "https://lichess.org/zzDebrf1"]\n[Date "${ud}"]\n[UTCDate "${ud}"]\n[UTCTime "${ut}"]\n[White "ThePawnScum12"]\n[Black "Gifter"]\n[Result "0-1"]\n\n1. e4 e5 2. Qh5 Nc6 3. Qxe5+ Nxe5 4. d4 Nc6 5. d5 Nd4 6. Bd3 d6 7. c3 Nb5 8. Ne2 Nf6 9. O-O Be7 0-1\n`;
+  await page.route('https://lichess.org/**', (r) => r.fulfill({ status: 200, headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/x-chess-pgn' }, body: fresh }));
+  await page.route('https://api.chess.com/**', (r) => r.fulfill({ status: 200, headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/x-chess-pgn' }, body: '' }));
+  await go('prefs');
+  ok('Data has the live-watch and notification switches', (await page.locator('label.switch', { hasText: 'Watch for finished games' }).count()) === 1 && (await page.locator('label.switch', { hasText: 'Notify me when a debrief is ready' }).count()) === 1);
+  await page.click('[data-testid=sync-now]');
+  const gotDebrief = await page
+    .waitForFunction(() => Object.values(JSON.parse(localStorage.getItem('outpost:v1:core')).debriefs || {}).some((d) => d.steps > 0 && !d.done), null, { timeout: 60000 })
+    .then(() => true)
+    .catch(() => false);
+  ok('a freshly played synced game is analysed first and gets a debrief', gotDebrief);
+  await page.unroute('https://lichess.org/**');
+  await page.unroute('https://api.chess.com/**');
+  await go('tactics');
+  ok('a “Debrief ready” pill shows on other screens', (await page.locator('[data-testid=debrief-pill]').count()) === 1);
+  await go('play');
+  if (await page.getByRole('button', { name: 'Stop and set up a new game' }).count()) {
+    await clickText('Stop and set up a new game');
+    await clickText('Stop game', { exact: true });
+  }
+  await go('home');
+ok('Home leads with the debrief', /Debrief: your game vs Gifter/.test(await page.innerText('#hero-title')));
+  ok('the debrief names the mistake', /Left a piece hanging|blunder|mistake/i.test(await page.innerText('.hero')));
+  await shot('home-debrief');
+  await page.click('[data-testid=next-action]');
+  await page.waitForSelector('[data-testid=guide-panel]', { timeout: 20000 }).catch(() => {});
+  ok('“Fix it now” opens the debrief straight into the first moment', /Debrief · moment 1 of/i.test(await page.locator('[data-testid=guide-panel]').innerText().catch(() => '')));
+  await shot('debrief');
+  for (let k = 0; k < 4 && !(await page.locator('[data-testid=guide-done]').count()); k++) {
+    if (await page.locator('[data-testid=guide-skip]').count()) await page.click('[data-testid=guide-skip]');
+    await page.waitForTimeout(200);
+    if (await page.locator('[data-testid=guide-next]').count()) await page.click('[data-testid=guide-next]');
+    await page.waitForTimeout(250);
+  }
+  ok('the debrief ends with this game against your goal', (await page.locator('[data-testid=debrief-goal]').count()) === 1);
+  ok('a finished debrief is marked done', await page.evaluate(() => Object.values(JSON.parse(localStorage.getItem('outpost:v1:core')).debriefs || {}).every((d) => d.done || !d.steps)));
+  await go('home');
+  ok('Home shows your goal with last-10 and last-50 numbers', (await page.locator('[data-testid=goal-card]').count()) === 1 && /last 10 games/.test(await page.innerText('[data-testid=goal-card]')));
+  await go('insights');
+  ok('Insights shows the goal and the trends for every metric', (await page.locator('[data-testid=goal-card]').count()) === 1 && (await page.locator('[data-testid=trends] .trend').count()) === 5);
+  await page.click('[data-testid=goal-change]');
+  await page.locator('[data-testid=goal-edit] button', { hasText: 'Blunders' }).first().click();
+  await page.waitForTimeout(150);
+  ok('you can change the goal', /Blunders/.test(await page.innerText('[data-testid=goal-card] .goal-metric')));
+  await shot('goals');
+  await page.locator('[data-testid=goal-edit] button', { hasText: 'Use the suggestion' }).click();
+}
 
 await go('prefs');
 const [dl] = await Promise.all([page.waitForEvent('download', { timeout: 5000 }).catch(() => null), page.click('[data-testid=export-data]')]);

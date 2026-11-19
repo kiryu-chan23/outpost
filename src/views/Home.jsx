@@ -1,5 +1,6 @@
 // Home: one obvious next action, chosen from saved activity, with recent
 // games and progress underneath.
+import { GoalCard } from '../components/Goals.jsx';
 import { useMemo } from 'preact/hooks';
 import { Board } from '../components/Board.jsx';
 import { Icon } from '../components/Icon.jsx';
@@ -38,7 +39,7 @@ function heroPosition(action, state, games) {
       return { fen: r.fens[ply], orientation: cgColor(g.userColor || 'w'), lastMove: last ? [last.from, last.to] : null, cap: `Your costliest one: ${g.white} – ${g.black}, before move ${Math.floor(ply / 2) + 1}` };
     }
   }
-  if (action.fen) return { fen: action.fen, orientation: action.orientation || cgColor(turnOf(action.fen)), cap: action.id === 'due' ? 'Your next review puzzle' : 'From the lesson' };
+  if (action.fen) return { fen: action.fen, orientation: action.orientation || cgColor(turnOf(action.fen)), cap: action.caption || (action.id === 'due' ? 'Your next review puzzle' : 'From the lesson') };
   return { fen: START_FEN, orientation: 'white', cap: null };
 }
 
@@ -56,6 +57,7 @@ export function Home() {
   const themes = puzzleThemes(state.attempts).filter((t) => t.n >= MIN_THEME_ATTEMPTS);
   const lessonsDone = Object.values(state.lessonProgress).filter((p) => p.done).length;
   const fresh = !games.length && !state.attempts.length && !state.activity.length;
+  const reviewedCount = games.filter((g) => g.analysis && g.userColor).length;
 
   const start = (a) => {
     if (a.route === 'review' && a.params?.id) update((s) => (s.ui.reviewId = a.params.id));
@@ -112,6 +114,12 @@ export function Home() {
           <div class="s">finished</div>
         </div>
       </div>
+
+      {reviewedCount ? (
+        <div style={{ marginBottom: '18px' }}>
+          <GoalCard compact />
+        </div>
+      ) : null}
 
       <div class="grid-2" style={{ alignItems: 'start' }}>
         <section class="panel pad" aria-labelledby="h-recent">

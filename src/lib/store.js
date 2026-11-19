@@ -21,7 +21,8 @@ const defaults = () => ({
     reviewDepth: 'standard',
     names: ['ThePawnScum', 'ThePawnScum12'], // my usernames (chess.com, Lichess): imports use them to pick my side
     accounts: { chesscom: 'ThePawnScum', lichess: 'ThePawnScum12' }, // synced automatically
-    sync: { auto: true, analyse: true },
+    sync: { auto: true, analyse: true, live: true, notify: false },
+    wheels: { level: 3, games: [] }, // live coach: pre-move warnings, fading as games get cleaner
   },
   namesSeeded: true,
   gameOrder: [], // newest first
@@ -37,6 +38,8 @@ const defaults = () => ({
   convertStats: {}, // won-position id -> { attempts, wins, last }
   academy: {}, // theme id -> { seen, learned, at }
   pathUnlocked: {}, // stage id -> true when skipped ahead
+  debriefs: {}, // game id -> post-game debrief { headline, steps, done, found }
+  goal: null, // { metric, target, setAt } — null means use the suggested goal
   syncLog: {}, // site -> { at, okAt, added, total, error, kind, user }, lastAttempt, blocked
   ownPositions: {}, // 'gameId:ply' -> { ok, tries, at } (lesson positions from my games)
   calc: { level: 1, best: 1, rounds: 0, perfect: 0, good: 0, bad: 0, hist: [] }, // calculation trainer
@@ -323,6 +326,8 @@ export function readExport(text) {
     convertStats: isObj(c.convertStats) ? c.convertStats : {},
     academy: isObj(c.academy) ? c.academy : {},
     pathUnlocked: isObj(c.pathUnlocked) ? c.pathUnlocked : {},
+    debriefs: isObj(c.debriefs) ? c.debriefs : {},
+    goal: isObj(c.goal) ? c.goal : null,
     ownPositions: isObj(c.ownPositions) ? c.ownPositions : {},
     calc: isObj(c.calc) && typeof c.calc.level === 'number' ? c.calc : base.calc,
     activity: Array.isArray(c.activity) ? c.activity.filter(isObj) : [],
@@ -365,6 +370,8 @@ export function applyImport({ core, games }, mode) {
     s.convertStats = { ...(core.convertStats || {}), ...(s.convertStats || {}) };
     s.academy = { ...(core.academy || {}), ...(s.academy || {}) };
     s.pathUnlocked = { ...(core.pathUnlocked || {}), ...(s.pathUnlocked || {}) };
+    s.debriefs = { ...(core.debriefs || {}), ...(s.debriefs || {}) };
+    if (!s.goal && core.goal) s.goal = core.goal;
     s.ownPositions = { ...(core.ownPositions || {}), ...(s.ownPositions || {}) };
     if (core.calc && (!s.calc || (core.calc.rounds || 0) > (s.calc.rounds || 0))) s.calc = core.calc;
     s.settings.names = [...new Set([...(s.settings.names || []), ...(core.settings.names || [])])];

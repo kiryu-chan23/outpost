@@ -6,6 +6,7 @@ import { Note, Switch, toast, fmtDateTime } from '../components/ui.jsx';
 import { useStore, update } from '../lib/store.js';
 import { SITES, syncAccounts, downloadLinks, syncRunning } from '../lib/sync.js';
 import { copyText } from '../lib/files.js';
+import { askNotifyPermission } from '../lib/debrief.js';
 import { ImportPanel } from './Review.jsx';
 import { go } from '../lib/router.js';
 import { syncToast } from '../lib/synctoast.js';
@@ -29,6 +30,13 @@ export function AccountsPanel() {
   const [draft, setDraft] = useState({ chesscom: accounts.chesscom || '', lichess: accounts.lichess || '' });
   const [busy, setBusy] = useState(false);
   const [showDrop, setShowDrop] = useState(false);
+  const [notifyState, setNotifyState] = useState(() => {
+    try {
+      return typeof Notification === 'undefined' ? 'unsupported' : Notification.permission;
+    } catch {
+      return 'unsupported';
+    }
+  });
   const dirty = draft.chesscom.trim() !== (accounts.chesscom || '') || draft.lichess.trim() !== (accounts.lichess || '');
 
   const save = () =>
@@ -112,6 +120,22 @@ export function AccountsPanel() {
       </Switch>
       <Switch checked={sync.analyse !== false} onChange={(v) => setSync('analyse', v)} hint="Synced games are reviewed by the engine one after another while you do other things.">
         Analyse new games in the background
+      </Switch>
+      <Switch checked={sync.live !== false} onChange={(v) => setSync('live', v)} hint="While Outpost is open, check every few minutes. Each finished game is reviewed first and gets a one-minute debrief.">
+        Watch for finished games
+      </Switch>
+      <Switch
+        checked={!!sync.notify && notifyState === 'granted'}
+        onChange={async (v) => {
+          if (!v) return setSync('notify', false);
+          const p = await askNotifyPermission();
+          setNotifyState(p);
+          setSync('notify', p === 'granted');
+          if (p !== 'granted') toast(p === 'unsupported' ? 'This browser (or this copy) can’t show notifications' : 'Notifications were blocked — allow them for this site in the browser’s settings');
+        }}
+        hint="A browser notification when a debrief is ready and Outpost is in a background tab."
+      >
+        Notify me when a debrief is ready
       </Switch>
 
       {blocked ? (
